@@ -3,16 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAPD Roleplay Command Helper</title>
+    <link rel="icon" href="image/favicon.png" type="image/png">
+    <title>Police Roleplay Helper</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f4f4f4;
+            background-color: #191B30;
         }
         h1 {
             text-align: center;
             color: #333;
+        }
+        .text-information {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            color: #;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #selectedChargesTable {
+            border: 1px solid #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #totalsTable {
+            border: 1px solid #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #availableChargesTable {
+            border: 1px solid #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
         }
         .input-section {
             margin-bottom: 20px;
@@ -48,30 +72,37 @@
         }
         .add-btn {
             background-color: #4CAF50;
+            border-radius: 20px;
             color: white;
         }
         .remove-btn {
-            background-color: #f44336;
+            background-color: #ff0000;
             color: white;
+            border-radius: 20px;
         }
         .copy-btn {
             background-color: #2196F3;
             color: white;
+            border-radius: 20px;
         }
         .total-copy-btn {
-            background-color: #FF9800;
+            background-color: #495057;
             color: white;
+            border-radius: 20px;
+        }
+        .total-reset-btn {
+            background-color: #ff0000;
+            color: white;
+            border-radius: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>SAPD Roleplay Command Helper</h1>
-    
+    <h1 style="color: #ffffff;">Police Roleplay Helper</h1>
     <div class="input-section">
-        <input type="text" id="playerId" placeholder="Enter Player ID">
+        <input type="text" id="playerId" placeholder="Player ID" style="border-radius: 10px">
     </div>
-    
-    <h2>Selected Charges</h2>
+    <h2 style="color: #ffffff">Selected Charges</h2>
     <table id="selectedChargesTable">
         <thead>
             <tr>
@@ -87,8 +118,7 @@
             <!-- Selected charges will be added here -->
         </tbody>
     </table>
-    
-    <h3>Totals</h3>
+    <h2 style="color: #ffffff">Totals</h2>
     <table id="totalsTable">
         <thead>
             <tr>
@@ -103,14 +133,15 @@
                 <td id="totalJail">0</td>
                 <td id="totalFine">0</td>
                 <td id="totalBail">0</td>
-                <td><button class="total-copy-btn" onclick="copyTotalCommand()">Copy Arrest Command</button></td>
+                <td>
+                    <button class="total-copy-btn" onclick="copyTotalCommand()">COPY</button>
+                </td>
             </tr>
         </tbody>
     </table>
-    
-    <h2>Available Charges</h2>
+    <h2 style="color: #ffffff">Available Charges</h2>
     <div class="search-section">
-        <input type="text" id="searchInput" placeholder="Search by # or Charge..." onkeyup="filterCharges()">
+        <input type="text" id="searchInput" placeholder="Search" onkeyup="filterCharges()" style="border-radius: 10px">
     </div>
     <table id="availableChargesTable">
         <thead>
@@ -126,12 +157,12 @@
         <tbody>
             <!-- Available charges with random values -->
             <tr>
-                <td>1</td>
-                <td>Theft</td>
+                <td>(1) A</td>
+                <td>General Traffic Violation</td>
                 <td id="jail1">15</td>
                 <td id="fine1">200</td>
                 <td id="bail1">300</td>
-                <td><button class="add-btn" onclick="addCharge('Theft', 1, 15, 200, 300)">Add</button></td>
+                <td><button class="add-btn" onclick="addCharge('General Traffic Violation', '(1) A', 15, 200, 300)">Add</button></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -192,7 +223,7 @@
             <!-- Add more charges as needed -->
         </tbody>
     </table>
-
+    <h1 style="color: #ffffff; background: #222222; padding: 20px; border-radius: 20px;">Ht. Syahbi Ramadani</h1>
     <script>
         function addCharge(charge, number, jailTime, fine, bail) {
             const table = document.getElementById('selectedChargesTable').getElementsByTagName('tbody')[0];
@@ -208,30 +239,23 @@
             cell3.textContent = jailTime;
             cell4.textContent = fine;
             cell5.textContent = bail;
-            cell6.innerHTML = `<button class="remove-btn" onclick="removeCharge(this, ${jailTime}, ${fine}, ${bail})">Remove</button> <button class="copy-btn" onclick="copyCommand('${charge}')">Copy SU</button>`;
+            cell6.innerHTML = `<button class="copy-btn" onclick="copyCommand('${number} ${charge}')">Copy</button> <button class="remove-btn" onclick="removeCharge(this, ${jailTime}, ${fine}, ${bail})">Remove</button>`;
             updateTotals(jailTime, fine, bail);
         }
-
         function removeCharge(button, jailTime, fine, bail) {
             const row = button.parentNode.parentNode;
             row.parentNode.removeChild(row);
             updateTotals(-jailTime, -fine, -bail);
         }
-
-        function copyCommand(charge) {
+        function copyCommand(string) {
             const playerId = document.getElementById('playerId').value;
             if (!playerId) {
                 alert('Please enter a Player ID first.');
                 return;
             }
-            const command = `/su ${playerId} ${charge}`;
-            navigator.clipboard.writeText(command).then(() => {
-                alert('Command copied to clipboard: ' + command);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
+            const command = `/su ${playerId} ${string}`;
+            navigator.clipboard.writeText(command)
         }
-
         function copyTotalCommand() {
             const playerId = document.getElementById('playerId').value;
             if (!playerId) {
@@ -242,13 +266,8 @@
             const totalFine = document.getElementById('totalFine').textContent;
             const totalBail = document.getElementById('totalBail').textContent;
             const command = `/arrest ${playerId} ${totalJail} ${totalFine} ${totalBail}`;
-            navigator.clipboard.writeText(command).then(() => {
-                alert('Command copied to clipboard: ' + command);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
+            navigator.clipboard.writeText(command)
         }
-
         function updateTotals(jailDelta, fineDelta, bailDelta) {
             const totalJailEl = document.getElementById('totalJail');
             const totalFineEl = document.getElementById('totalFine');
@@ -257,13 +276,11 @@
             totalFineEl.textContent = parseInt(totalFineEl.textContent) + fineDelta;
             totalBailEl.textContent = parseInt(totalBailEl.textContent) + bailDelta;
         }
-
         function filterCharges() {
             const input = document.getElementById('searchInput');
             const filter = input.value.toLowerCase();
             const table = document.getElementById('availableChargesTable');
             const rows = table.getElementsByTagName('tr');
-
             for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
                 const numberCell = rows[i].getElementsByTagName('td')[0]; // # column
                 const chargeCell = rows[i].getElementsByTagName('td')[1]; // Charge column
