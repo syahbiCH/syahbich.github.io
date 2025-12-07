@@ -1,41 +1,282 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tampilan Warna Biru</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background-color: #1e90ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    }
-    .card {
-      background: white;
-      color: #1e90ff;
-      padding: 24px 28px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    }
-    .swatch {
-      width: 160px;
-      height: 100px;
-      background: #1e90ff;
-      border-radius: 8px;
-      margin-top: 12px;
-      border: 2px solid #0c5fb3;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPD Roleplay Command Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .search-section {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .add-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .remove-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .copy-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        .total-copy-btn {
+            background-color: #FF9800;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Warna Biru</h1>
-    <p>Contoh tampilan warna biru di halaman web.</p>
-    <div class="swatch" aria-label="Contoh blok warna biru"></div>
-  </div>
+    <h1>SAPD Roleplay Command Helper</h1>
+    
+    <div class="input-section">
+        <input type="text" id="playerId" placeholder="Enter Player ID">
+    </div>
+    
+    <h2>Selected Charges</h2>
+    <table id="selectedChargesTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Charge</th>
+                <th>Jail Time</th>
+                <th>Fine</th>
+                <th>Bail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Selected charges will be added here -->
+        </tbody>
+    </table>
+    
+    <h3>Totals</h3>
+    <table id="totalsTable">
+        <thead>
+            <tr>
+                <th>Total Jail Time</th>
+                <th>Total Fine</th>
+                <th>Total Bail</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="totalJail">0</td>
+                <td id="totalFine">0</td>
+                <td id="totalBail">0</td>
+                <td><button class="total-copy-btn" onclick="copyTotalCommand()">Copy Arrest Command</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Available Charges</h2>
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="Search by # or Charge..." onkeyup="filterCharges()">
+    </div>
+    <table id="availableChargesTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Charge</th>
+                <th>Jail Time</th>
+                <th>Fine</th>
+                <th>Bail</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Available charges with random values -->
+            <tr>
+                <td>1</td>
+                <td>Theft</td>
+                <td id="jail1">15</td>
+                <td id="fine1">200</td>
+                <td id="bail1">300</td>
+                <td><button class="add-btn" onclick="addCharge('Theft', 1, 15, 200, 300)">Add</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Assault</td>
+                <td id="jail2">30</td>
+                <td id="fine2">500</td>
+                <td id="bail2">600</td>
+                <td><button class="add-btn" onclick="addCharge('Assault', 2, 30, 500, 600)">Add</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Murder</td>
+                <td id="jail3">60</td>
+                <td id="fine3">1000</td>
+                <td id="bail3">1000</td>
+                <td><button class="add-btn" onclick="addCharge('Murder', 3, 60, 1000, 1000)">Add</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Drug Possession</td>
+                <td id="jail4">20</td>
+                <td id="fine4">400</td>
+                <td id="bail4">500</td>
+                <td><button class="add-btn" onclick="addCharge('Drug Possession', 4, 20, 400, 500)">Add</button></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Reckless Driving</td>
+                <td id="jail5">10</td>
+                <td id="fine5">150</td>
+                <td id="bail5">200</td>
+                <td><button class="add-btn" onclick="addCharge('Reckless Driving', 5, 10, 150, 200)">Add</button></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Vandalism</td>
+                <td id="jail6">25</td>
+                <td id="fine6">300</td>
+                <td id="bail6">400</td>
+                <td><button class="add-btn" onclick="addCharge('Vandalism', 6, 25, 300, 400)">Add</button></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Robbery</td>
+                <td id="jail7">45</td>
+                <td id="fine7">800</td>
+                <td id="bail7">900</td>
+                <td><button class="add-btn" onclick="addCharge('Robbery', 7, 45, 800, 900)">Add</button></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Evading Police</td>
+                <td id="jail8">35</td>
+                <td id="fine8">600</td>
+                <td id="bail8">700</td>
+                <td><button class="add-btn" onclick="addCharge('Evading Police', 8, 35, 600, 700)">Add</button></td>
+            </tr>
+            <!-- Add more charges as needed -->
+        </tbody>
+    </table>
+
+    <script>
+        function addCharge(charge, number, jailTime, fine, bail) {
+            const table = document.getElementById('selectedChargesTable').getElementsByTagName('tbody')[0];
+            const row = table.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            const cell4 = row.insertCell(3);
+            const cell5 = row.insertCell(4);
+            const cell6 = row.insertCell(5);
+            cell1.textContent = number;
+            cell2.textContent = charge;
+            cell3.textContent = jailTime;
+            cell4.textContent = fine;
+            cell5.textContent = bail;
+            cell6.innerHTML = `<button class="remove-btn" onclick="removeCharge(this, ${jailTime}, ${fine}, ${bail})">Remove</button> <button class="copy-btn" onclick="copyCommand('${charge}')">Copy SU</button>`;
+            updateTotals(jailTime, fine, bail);
+        }
+
+        function removeCharge(button, jailTime, fine, bail) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            updateTotals(-jailTime, -fine, -bail);
+        }
+
+        function copyCommand(charge) {
+            const playerId = document.getElementById('playerId').value;
+            if (!playerId) {
+                alert('Please enter a Player ID first.');
+                return;
+            }
+            const command = `/su ${playerId} ${charge}`;
+            navigator.clipboard.writeText(command).then(() => {
+                alert('Command copied to clipboard: ' + command);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        function copyTotalCommand() {
+            const playerId = document.getElementById('playerId').value;
+            if (!playerId) {
+                alert('Please enter a Player ID first.');
+                return;
+            }
+            const totalJail = document.getElementById('totalJail').textContent;
+            const totalFine = document.getElementById('totalFine').textContent;
+            const totalBail = document.getElementById('totalBail').textContent;
+            const command = `/arrest ${playerId} ${totalJail} ${totalFine} ${totalBail}`;
+            navigator.clipboard.writeText(command).then(() => {
+                alert('Command copied to clipboard: ' + command);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        function updateTotals(jailDelta, fineDelta, bailDelta) {
+            const totalJailEl = document.getElementById('totalJail');
+            const totalFineEl = document.getElementById('totalFine');
+            const totalBailEl = document.getElementById('totalBail');
+            totalJailEl.textContent = parseInt(totalJailEl.textContent) + jailDelta;
+            totalFineEl.textContent = parseInt(totalFineEl.textContent) + fineDelta;
+            totalBailEl.textContent = parseInt(totalBailEl.textContent) + bailDelta;
+        }
+
+        function filterCharges() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('availableChargesTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header
+                const numberCell = rows[i].getElementsByTagName('td')[0]; // # column
+                const chargeCell = rows[i].getElementsByTagName('td')[1]; // Charge column
+                const numberText = numberCell ? (numberCell.textContent || numberCell.innerText).toLowerCase() : '';
+                const chargeText = chargeCell ? (chargeCell.textContent || chargeCell.innerText).toLowerCase() : '';
+                
+                if (numberText.includes(filter) || chargeText.includes(filter)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
 </body>
 </html>
