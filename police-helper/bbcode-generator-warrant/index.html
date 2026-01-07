@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Code Generator Incident Report</title>
+    <link rel="icon" href="image/website-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="margin: 20px;">
+        <div class="header">
+            <h1>💻 BB Code Generator (Arrest Warrant)</h1>
+        </div>
+
+        <div class="section">
+            <h2>📋 Arrest Warrant Information</h2>
+            <label for="warrant-type" style="font-weight: bold;">Arrest Warrant Type</label><br>
+            <div class="dropdown">
+                <button id="warrant-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
+                <div id="dropdownContent" class="dropdown-content">
+                    <a href="#" onclick="selectOption('Standard Arrest Warrant', 'warrant-type')">Standard Arrest Warrant</a>
+                    <a href="#" onclick="selectOption('Special Arrest Warrant', 'warrant-type')">Special Arrest Warrant</a>
+                    <a href="#" onclick="selectOption('Detective Target', 'warrant-type')">Detective Target</a>
+                </div>
+            </div>
+            <br>
+            <label for="officer-involved" style="font-weight: bold;">Officer Involved</label><br>
+            <div id="officer-involved-container">
+                <div class="officer-input-group">
+                    <input class="input-box" type="text" placeholder="Officer Name">
+                    <button class="add-btn" onclick="addOfficerInput()">+</button>
+                </div>
+            </div>
+            <br>
+            <label for="warrant-date" style="font-weight: bold;">Date</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="date" id="warrant-date">
+            </div>
+            <label for="chronology" style="font-weight: bold;">Chronology</label><br>
+            <div class="officer-input-group">
+                <textarea class="input-box" id="chronology" placeholder="Describe the chronology of events" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>😬 Suspect Information</h2>
+            <label for="suspect" style="font-weight: bold;">Suspect</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="suspect" placeholder="Firstname Lastname">
+            </div>
+            <label for="gender" style="font-weight: bold;">Gender</label><br>
+            <div class="dropdown">
+                <button id="gender" class="dropbtn" onclick="toggleDropdownGender()">Pilih Opsi</button>
+                <div id="dropdownContent-gender" class="dropdown-content">
+                    <a href="#" onclick="selectOption('Male', 'gender')">Male</a>
+                    <a href="#" onclick="selectOption('Female', 'gender')">Female</a>
+                </div>
+            </div>
+            <label for="suspect-clothes" style="font-weight: bold;">Suspect Clothes</label><br>
+            <div class="dropdown">
+                <button id="clothes" class="dropbtn" onclick="toggleDropdownClothes()">Pilih Opsi</button>
+                <div id="dropdownContent-clothes" class="dropdown-content">
+                    
+                </div>
+            </div>
+            <br>
+            <label for="description-suspect" style="font-weight: bold;">Description of suspect</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="description-suspect" placeholder="Describe the suspect">
+            </div>
+            <label for="phone-number" style="font-weight: bold;">Number of phone</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="phone-number" placeholder="Phone number">
+            </div>
+            <label for="info-suspect" style="font-weight: bold;">Information about suspect</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="info-suspect" placeholder="Additional information">
+            </div>
+            <label for="evidence-type" style="font-weight: bold;">Evidence Type</label><br>
+            <div class="dropdown">
+                <button id="evidence-type" class="dropbtn" onclick="toggleDropdownEvidence()">Pilih Opsi</button>
+                <div id="dropdownContent-evidence" class="dropdown-content">
+                    <a href="#" onclick="selectOption('Chatlog', 'evidence-type')">Chatlog</a>
+                    <a href="#" onclick="selectOption('URL', 'evidence-type')">URL</a>
+                </div>
+            </div>
+            <br>
+            <label for="evidence" style="font-weight: bold;">Evidence(s)</label><br>
+            <div class="officer-input-group" id="evidence-container">
+                <input class="input-box" type="text" id="evidence" placeholder="Enter evidence">
+            </div>
+            <div id="detective-target-fields" style="display: none;">
+                <label for="suspect-vehicles" style="font-weight: bold;">All suspect vehicle(s)</label><br>
+                <div id="suspect-vehicles-container">
+                    <div class="officer-input-group">
+                        <input class="input-box" type="text" placeholder="Vehicle description">
+                        <button class="add-btn" onclick="addVehicleInput()">+</button>
+                    </div>
+                </div>
+                <label for="suspect-home-address" style="font-weight: bold;">Suspect's home address</label><br>
+                <div id="suspect-home-address-container">
+                    <div class="officer-input-group">
+                        <input class="input-box" type="text" placeholder="Home address">
+                        <button class="add-btn" onclick="addAddressInput()">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>🖨 Result(s)</h2>
+            <button class="copy-two" onclick="copyTopicName()">Copy Topic Name</button><br>
+            <div class="section">
+            <span id="output-subject" class="output-code-display"></span></div>
+            <button class="copy" onclick="copyBBCode()">Copy BBCode</button><br>
+            <div class="section-two">
+            <span id="output-code" class="output-code-display"></span></div>
+        </div>
+    </div>
+    <div  style="text-align: center; margin-top: 20px;">
+        <button class="back-btn" onclick="window.location.href='https://syahbich.github.io/police-helper/'">Back to menu</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
