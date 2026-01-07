@@ -12,10 +12,9 @@
         <div class="header">
             <h1>💻 BB Code Generator (Arrest Warrant)</h1>
         </div>
-
         <div class="section">
             <h2>📋 Arrest Warrant Information</h2>
-            <label for="warrant-type" style="font-weight: bold;">Arrest Warrant Type</label><br>
+            <label for="warrant-type-box" style="font-weight: bold;">Arrest Warrant Type</label><br>
             <div class="dropdown">
                 <button id="warrant-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
                 <div id="dropdownContent" class="dropdown-content">
@@ -28,7 +27,7 @@
             <label for="officer-involved" style="font-weight: bold;">Officer Involved</label><br>
             <div id="officer-involved-container">
                 <div class="officer-input-group">
-                    <input class="input-box" type="text" placeholder="Officer Name">
+                    <input class="input-box" type="text" placeholder="Rank Firstname Lastname">
                     <button class="add-btn" onclick="addOfficerInput()">+</button>
                 </div>
             </div>
@@ -37,6 +36,7 @@
             <div class="officer-input-group">
                 <input class="input-box" type="date" id="warrant-date">
             </div>
+            <br>
             <label for="chronology" style="font-weight: bold;">Chronology</label><br>
             <div class="officer-input-group">
                 <textarea class="input-box" id="chronology" placeholder="Describe the chronology of events" rows="4"></textarea>
@@ -49,6 +49,7 @@
             <div class="officer-input-group">
                 <input class="input-box" type="text" id="suspect" placeholder="Firstname Lastname">
             </div>
+            <br>
             <label for="gender" style="font-weight: bold;">Gender</label><br>
             <div class="dropdown">
                 <button id="gender" class="dropbtn" onclick="toggleDropdownGender()">Pilih Opsi</button>
@@ -57,11 +58,11 @@
                     <a href="#" onclick="selectOption('Female', 'gender')">Female</a>
                 </div>
             </div>
+            <br>
             <label for="suspect-clothes" style="font-weight: bold;">Suspect Clothes</label><br>
             <div class="dropdown">
                 <button id="clothes" class="dropbtn" onclick="toggleDropdownClothes()">Pilih Opsi</button>
                 <div id="dropdownContent-clothes" class="dropdown-content">
-                    
                 </div>
             </div>
             <br>
@@ -69,28 +70,31 @@
             <div class="officer-input-group">
                 <input class="input-box" type="text" id="description-suspect" placeholder="Describe the suspect">
             </div>
+            <br>
             <label for="phone-number" style="font-weight: bold;">Number of phone</label><br>
             <div class="officer-input-group">
                 <input class="input-box" type="text" id="phone-number" placeholder="Phone number">
             </div>
-            <label for="info-suspect" style="font-weight: bold;">Information about suspect</label><br>
-            <div class="officer-input-group">
-                <input class="input-box" type="text" id="info-suspect" placeholder="Additional information">
-            </div>
-            <label for="evidence-type" style="font-weight: bold;">Evidence Type</label><br>
-            <div class="dropdown">
-                <button id="evidence-type" class="dropbtn" onclick="toggleDropdownEvidence()">Pilih Opsi</button>
-                <div id="dropdownContent-evidence" class="dropdown-content">
-                    <a href="#" onclick="selectOption('Chatlog', 'evidence-type')">Chatlog</a>
-                    <a href="#" onclick="selectOption('URL', 'evidence-type')">URL</a>
+            <br>
+            <label for="suspect-charge" style="font-weight: bold;">Suspect Charge(s)</label><br>
+            <div id="suspect-charge-container">
+                <div class="officer-input-group">
+                    <input class="input-box" type="text" placeholder="Charge here">
+                    <button class="add-btn" onclick="addChargeInput()">+</button>
                 </div>
+            </div>
+            <br>
+            <label for="info-suspect" style="font-weight: bold;">Information about suspect (MDC)</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="info-suspect" placeholder="Paste your image link here (Don't use [IMG]URL[/IMG], just paste your link)">
             </div>
             <br>
             <label for="evidence" style="font-weight: bold;">Evidence(s)</label><br>
             <div class="officer-input-group" id="evidence-container">
-                <input class="input-box" type="text" id="evidence" placeholder="Enter evidence">
+                <textarea class="input-box" id="evidence" placeholder="Enter evidence (If you want to use URL, please use this format: [img]URL[/img])" rows="4"></textarea>
             </div>
-            <div id="detective-target-fields" style="display: none;">
+            <br>
+            <div id="detective-target-fields">
                 <label for="suspect-vehicles" style="font-weight: bold;">All suspect vehicle(s)</label><br>
                 <div id="suspect-vehicles-container">
                     <div class="officer-input-group">
@@ -98,6 +102,7 @@
                         <button class="add-btn" onclick="addVehicleInput()">+</button>
                     </div>
                 </div>
+                <br>
                 <label for="suspect-home-address" style="font-weight: bold;">Suspect's home address</label><br>
                 <div id="suspect-home-address-container">
                     <div class="officer-input-group">
