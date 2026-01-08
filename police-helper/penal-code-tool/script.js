@@ -13,7 +13,7 @@ const charges =
     {number: '(1) B', description: 'Failure to pay any issued ticket', fine: '$65.00', jailtime: '15', bail: '$195.00'},
     {number: '(1) C', description: 'Driving any motorized vehicle without an official driving license', fine: '$100.00', jailtime: '15', bail: '$300.00'},
     {number: '(1) D', description: 'Maneuver any sea vehicles without official sailing licenses', fine: '$150.00', jailtime: '20', bail: '$600.00'},
-    {number: '(1) E. 1', description: 'Driving any truck without official trucking licenses', fine: '$1,500.00', jailtime: '0', bail: '$9,000.00'},
+    {number: '(1) E. 1', description: 'Driving any truck without official trucking licenses', fine: '$1,500.00', jailtime: '30', bail: '$9,000.00'},
     {number: '(1) E. 2', description: 'Driving any lorry without official trucking licenses', fine: '$500.00', jailtime: '30', bail: '$3,000.00'},
     {number: '(1) F. 1', description: 'Truck driving in any inappropriate path, without any permission from officers before', fine: '$2,000.00', jailtime: '30', bail: '$10,000.00'},
     {number: '(1) F. 2', description: 'Lorry driving in any inappropriate path, without any permission from officers before', fine: '$200.00', jailtime: '30', bail: '$1,200.00'},
@@ -400,3 +400,4 @@ playerIdInput.addEventListener('input', updateCodeAndCommand);
 vehicleIdInput.addEventListener('input', updateCodeAndCommand);
 populateChargesTable();
 updateCodeAndCommand();
+
