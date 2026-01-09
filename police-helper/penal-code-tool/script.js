@@ -297,17 +297,17 @@ function copyCharge(number, description, type, fine)
     if(type === 'Ticket')
     {
         const ticketFine = parseFloat(fine.replace(/[$,]/g, '')).toString();
-        command = `/ticket ${playerId} ${ticketFine} ${number}. ${description}`;
+        command = `/ticket ${playerId.replace(' ','_')} ${ticketFine} ${number}. ${description}`;
     }
     else
     {
         if(number === 'STANDARD' || number === 'SPECIAL' || number === 'DB')
         {
-            command = `/su ${playerId} ${description}`;
+            command = `/su ${playerId.replace(' ','_')} ${description}`;
         }
         else
         {
-            command = `/su ${playerId} ${number}. ${description}`;
+            command = `/su ${playerId.replace(' ','_')} ${number}. ${description}`;
         }
     }
     navigator.clipboard.writeText(command);
@@ -360,7 +360,7 @@ function updateCodeAndCommand()
     const playerId = document.getElementById('playerId').value || '0';
     const vehicleId = document.getElementById('vehicleId').value || '0';
     codeElement.textContent = codeNumbers.join(', ');
-    commandElement.textContent = `/arrest ${playerId} ${totalJailtime} ${totalFine} ${totalBail}`;
+    commandElement.textContent = `/arrest ${playerId.replace(' ','_')} ${totalJailtime} ${totalFine} ${totalBail}`;
     impoundCommandElement.textContent = `/markimpound ${vehicleId} (...)`;
     document.getElementById('arrest-place').textContent = (totalJailtime > 60 ? `San Andreas Correctional Facility` : `Headquarter/Precint`);
 }
@@ -400,4 +400,3 @@ playerIdInput.addEventListener('input', updateCodeAndCommand);
 vehicleIdInput.addEventListener('input', updateCodeAndCommand);
 populateChargesTable();
 updateCodeAndCommand();
-
