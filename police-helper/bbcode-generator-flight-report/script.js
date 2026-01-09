@@ -124,7 +124,6 @@ function UpdateResultsOutputCode() {
         const [year, month, day] = dateValue.split('-');
         return `${day}/${month}/${year}`;
     }
-    document.getElementById('output-subject').textContent = `Coming Soon`;
     document.getElementById('output-code').textContent = `[divbox=transparent]\n[img]https://i.postimg.cc/sxqYTzTd/1nJzmTG.png[/img]\n[hr][/hr]\n[divbox=black][center][color=#FFFFFF][b]OFFICER INFORMATION[/b][/color][/center][/divbox]\n[table]\n[tr]\n[cell][size=90][b]OFFICER NAME: [/b]\n${officerName.value === '' ? 'N/A' : `${officerName.value}`}\n[/size]\n\n[cell][size=90][b]DATE: [/b]\n${formatDate(Date.value)}\n[/size]\n\n[cell][size=90][b]REPORT NUMBER: [/b]\n${reportNumber.value === '' ? 'N/A' : `${reportNumber.value}`}\n[/size]\n\n[tr]\n[cell][size=90][b]DURATION: [/b]\n${Duration.value === '' ? 'N/A' : `${Duration.value}`}\n[/size]\n\n[cell][size=90][b]UNIT CALLSIGN: [/b]\n${Callsign.value === '' ? 'N/A' : `${Callsign.value}`}\n[/size]\n\n[cell][size=90][b]PATROL PARTNER: [/b]\n${patrolPartner.value === '' ? 'N/A' : `${patrolPartner.value}`}\n[/size]\n\n[/table][space]\n[divbox=black][center][color=#FFFFFF][b]OFFICER ACTIVITY [/b][/color][/center][/divbox]\n[table]\n[tr]\n[cell][size=90][b]TAKE OFF AND PROOF UNIT ON FIELD ((/TEAM ON))[/b]\n[spoiler]${EvidenceOne}[/spoiler]\n\n[b]NOTABLE SITUATION (OPTIONAL)[/b]\n[spoiler]${EvidenceTwo}[/spoiler]\n\n[b]LANDING[/b]\n[spoiler]${EvidenceThree}[/spoiler]\n[/table]\n\n[/divbox]`;
 }
 
