@@ -186,6 +186,23 @@ function isChargeAdded(number)
     return false;
 }
 
+function formatDirectToOfficialPenalCode(displayNumber)
+{
+    if(displayNumber === '(1) A. 1' || displayNumber === '(1) A. 2' || displayNumber === '(1) A. 3' || displayNumber === '(1) A. 4' || displayNumber === '(1) A. 5' || displayNumber === '(1) A. 6' || displayNumber === '(1) A. 7' || displayNumber === '(1) A. 8' || displayNumber === '(1) A. 9')
+    {
+        displayNumber = '(1) A';
+    }
+    if(displayNumber === '(1) E. 1' || displayNumber === '(1) E. 2')
+    {
+        displayNumber = '(1) E';
+    }
+    if(displayNumber === '(1) F. 1' || displayNumber === '(1) F. 2')
+    {
+        displayNumber = '(1) F';
+    }
+    return `<a href="https://police.san-andreas.net/viewtopic.php?t=148639#:~:text=${displayNumber.replace(' ','%20')}"><button class="copy-search-button-1">🔗</button></a>`;
+}
+
 function populateChargesTable(filteredCharges = charges)
 {
     chargesTableBody.innerHTML = '';
@@ -196,7 +213,9 @@ function populateChargesTable(filteredCharges = charges)
         const type = getChargeType(charge.number);
         const typeClass = `type-${type.toLowerCase()}`;
         const row = document.createElement('tr');
-        row.innerHTML = `
+        if(displayNumber === 'STANDARD' || displayNumber === 'SPECIAL' || displayNumber === 'DB')
+        {
+            row.innerHTML = `
             <td>${displayNumber}</td>
             <td>${charge.description}</td>
             <td class="${typeClass}">${type}</td>
@@ -207,8 +226,23 @@ function populateChargesTable(filteredCharges = charges)
                 <button class="${buttonClass}" onclick="addCharge('${charge.number}', '${charge.description}', '${charge.fine}', '${charge.jailtime}', '${charge.bail}')">Add</button>
                 <button class="copy-search-button" onclick="copyNumber('${displayNumber}')">Copy #</button>
                 <button class="copy-search-button" onclick="copyDescription('${charge.description}')">Copy Description</button>
-            </td>
-        `;
+            </td>`;
+        }
+        else
+        {
+            row.innerHTML = `
+            <td>${displayNumber}</td>
+            <td>${charge.description} ${formatDirectToOfficialPenalCode(displayNumber)}</td>
+            <td class="${typeClass}">${type}</td>
+            <td>${charge.jailtime}</td>
+            <td>${charge.fine}</td>
+            <td>${charge.bail}</td>
+            <td>
+                <button class="${buttonClass}" onclick="addCharge('${charge.number}', '${charge.description}', '${charge.fine}', '${charge.jailtime}', '${charge.bail}')">Add</button>
+                <button class="copy-search-button" onclick="copyNumber('${displayNumber}')">Copy #</button>
+                <button class="copy-search-button" onclick="copyDescription('${charge.description}')">Copy Description</button>
+            </td>`;
+        }
         chargesTableBody.appendChild(row);
     });
 }
