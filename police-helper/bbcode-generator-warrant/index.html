@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BB Code Generator Incident Report</title>
+    <title>BB Code Generator Arrest Warrant</title>
     <link rel="icon" href="image/website-icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -18,9 +18,9 @@
             <div class="dropdown">
                 <button id="warrant-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
                 <div id="dropdownContent" class="dropdown-content">
-                    <a href="#" onclick="selectOption('Standard Arrest Warrant', 'warrant-type')">Standard Arrest Warrant</a>
-                    <a href="#" onclick="selectOption('Special Arrest Warrant', 'warrant-type')">Special Arrest Warrant</a>
-                    <a href="#" onclick="selectOption('Detective Target', 'warrant-type')">Detective Target</a>
+                    <a onclick="selectOption('Standard Arrest Warrant', 'warrant-type')">Standard Arrest Warrant</a>
+                    <a onclick="selectOption('Special Arrest Warrant', 'warrant-type')">Special Arrest Warrant</a>
+                    <a onclick="selectOption('Detective Target', 'warrant-type')">Detective Target</a>
                 </div>
             </div>
             <br>
@@ -54,8 +54,8 @@
             <div class="dropdown">
                 <button id="gender" class="dropbtn" onclick="toggleDropdownGender()">Pilih Opsi</button>
                 <div id="dropdownContent-gender" class="dropdown-content">
-                    <a href="#" onclick="selectOption('Male', 'gender')">Male</a>
-                    <a href="#" onclick="selectOption('Female', 'gender')">Female</a>
+                    <a onclick="selectOption('Male', 'gender')">Male</a>
+                    <a onclick="selectOption('Female', 'gender')">Female</a>
                 </div>
             </div>
             <br>
@@ -123,7 +123,9 @@
         </div>
     </div>
     <div  style="text-align: center; margin-top: 20px;">
-        <button class="back-btn" onclick="window.location.href='https://syahbich.github.io/police-helper/'">Back to menu</button>
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
     </div>
     <script src="script.js"></script>
 </body>
