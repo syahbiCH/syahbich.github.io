@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BB Code Generator License Revocation</title>
+    <title>BB Code Generator Flight Report</title>
     <link rel="icon" href="image/website-icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container" style="margin: 20px;">
         <div class="header">
-            <h1>💻 License Revocation (BB Code Generator)</h1>
+            <h1>💻 Fligh Report (BB Code Generator)</h1>
         </div>
 
         <div class="section">
@@ -23,9 +23,9 @@
             <div class="dropdown">
                 <button id="license-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
                 <div id="dropdownContent" class="dropdown-content">
-                    <a href="#" onclick="selectOption('Heavy Truck', 'license-type')">Heavy Truck</a>
-                    <a href="#" onclick="selectOption('Lorry Truck', 'license-type')">Lorry Truck</a>
-                    <a href="#" onclick="selectOption('Impound', 'license-type')">Impound</a>
+                    <a onclick="selectOption('Heavy Truck', 'license-type')">Heavy Truck</a>
+                    <a onclick="selectOption('Lorry Truck', 'license-type')">Lorry Truck</a>
+                    <a onclick="selectOption('Impound', 'license-type')">Impound</a>
                 </div>
             </div>
             <br>
@@ -47,7 +47,9 @@
         </div>
     </div>
     <div  style="text-align: center; margin-top: 20px;">
-        <button class="back-btn" onclick="window.location.href='https://syahbich.github.io/police-helper/'">Back to menu</button>
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
     </div>
     <script src="script.js"></script>
 </body>
