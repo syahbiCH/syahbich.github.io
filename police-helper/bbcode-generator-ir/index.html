@@ -21,12 +21,12 @@
             <div class="dropdown">
                 <button id="ir-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
                 <div id="dropdownContent" class="dropdown-content">
-                    <a href="#" onclick="selectOption('OIS', 'ir-type')">OIS - Officer Involved Shooting</a>
-                    <a href="#" onclick="selectOption('LERI', 'ir-type')">LERI - Law Enforcement Related Injury</a>
-                    <a href="#" onclick="selectOption('ICD', 'ir-type')">ICD - In Custody Death</a>
-                    <a href="#" onclick="selectOption('NTUD', 'ir-type')">NTUD - Non-Tactical Unintentional Discharge</a>
-                    <a href="#" onclick="selectOption('TUD', 'ir-type')">TUD - Tactical Unintentional Discharge</a>
-                    <a href="#" onclick="selectOption('CUOF', 'ir-type')">CUOF - Categorial Use of Force</a>
+                    <a onclick="selectOption('OIS', 'ir-type')">OIS - Officer Involved Shooting</a>
+                    <a onclick="selectOption('LERI', 'ir-type')">LERI - Law Enforcement Related Injury</a>
+                    <a onclick="selectOption('ICD', 'ir-type')">ICD - In Custody Death</a>
+                    <a onclick="selectOption('NTUD', 'ir-type')">NTUD - Non-Tactical Unintentional Discharge</a>
+                    <a onclick="selectOption('TUD', 'ir-type')">TUD - Tactical Unintentional Discharge</a>
+                    <a onclick="selectOption('CUOF', 'ir-type')">CUOF - Categorial Use of Force</a>
                 </div>
             </div>
             <br>
@@ -162,9 +162,9 @@
             <div class="dropdown">
                 <button id="uniform-type" class="dropbtn" onclick="toggleDropdownUniform()">Pilih Opsi</button>
                 <div id="dropdownContent-uniform" class="dropdown-content">
-                    <a href="#" onclick="selectOption('Patrol uniform', 'uniform-type')">Patrol uniform</a>
-                    <a href="#" onclick="selectOption('Tactical', 'uniform-type')">Tactical</a>
-                    <a href="#" onclick="selectOption('Plain clothes', 'uniform-type')">Plain clothes</a>
+                    <a onclick="selectOption('Patrol uniform', 'uniform-type')">Patrol uniform</a>
+                    <a onclick="selectOption('Tactical', 'uniform-type')">Tactical</a>
+                    <a onclick="selectOption('Plain clothes', 'uniform-type')">Plain clothes</a>
                 </div>
             </div>
             <br>
@@ -229,7 +229,9 @@
         </div>
     </div>
     <div  style="text-align: center; margin-top: 20px;">
-        <button class="back-btn" onclick="window.location.href='https://syahbich.github.io/police-helper/'">Back to menu</button>
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
     </div>
     <script src="script.js"></script>
 </body>
