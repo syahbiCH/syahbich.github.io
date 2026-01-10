@@ -328,19 +328,19 @@ function closeDropdownClothes()
 function populateClothes(gender)
 {
     const dropdown = document.getElementById('dropdownContent-clothes');
-    let html = '<a href="#" onclick="selectOption(\'IC6\',\'clothes\')"><img src="skin/(1) IC6.jpg" width="75" height="75"> IC6</a>';
+    let html = '<a onclick="selectOption(\'IC6\',\'clothes\')"><img src="skin/(1) IC6.jpg" width="75" height="75"> IC6</a>';
     if(gender === 'Male')
     {
         html += maleSkins.map(skin => {
             const skinName = skin.replace('.jpg', '');
-            return `<a href="#" onclick="selectOption('skin/${skinName}','clothes')"><img src="skin/${skin}" width="75" height="75"> ${skinName}</a>`;
+            return `<a onclick="selectOption('skin/${skinName}','clothes')"><img src="skin/${skin}" width="75" height="75"> ${skinName}</a>`;
         }).join('');
     }
     else
     {
         html += femaleSkins.map(skin => {
             const skinName = skin.replace('.jpg', '');
-            return `<a href="#" onclick="selectOption('skin/${skinName}','clothes')"><img src="skin/${skin}" width="75" height="75"> ${skinName}</a>`;
+            return `<a onclick="selectOption('skin/${skinName}','clothes')"><img src="skin/${skin}" width="75" height="75"> ${skinName}</a>`;
         }).join('');
     }
     dropdown.innerHTML = html;
