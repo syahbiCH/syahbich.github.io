@@ -1,4 +1,7 @@
-/* Simple design for Penal Code Tool */
+a{
+    text-decoration: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -253,7 +256,17 @@ button:hover {
     transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-.copy-search-button:hover{
+.copy-search-button-1
+{
+    border-radius: 10px;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    font-weight: bold;
+    color: white;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-search-button:hover,.copy-search-button-1:hover{
     border-radius: 10px;
     background-color: #00DD00;
     border-color: #00DD00;
