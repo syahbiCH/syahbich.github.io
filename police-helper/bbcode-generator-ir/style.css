@@ -319,3 +319,20 @@ button:hover {
     font-family: monospace;
     color: #000;
 }
+
+.input-group-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-group-box input {
+    flex: 1;
+}
+
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
