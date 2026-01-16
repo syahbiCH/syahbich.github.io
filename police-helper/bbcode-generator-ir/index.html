@@ -210,11 +210,26 @@
         <div class="section">
             <h2>🎥 Resource Information</h2>
             <label for="id-card-evidence" style="font-weight: bold;">Identity Card (Suspect's /showid)</label><br>
-            <input class="input-box" type="text" id="id-card-evidence" placeholder="Paste the image URL here"><br>
+            <div id="evidence-type-one">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceType('evidence-type-one')">+</button>
+                </div>
+            </div><br>
             <label for="evidence-record" style="font-weight: bold;">Evidence Record (/mdc > search > (Suspect_Name) > Evidence Collected)</label><br>
-            <input class="input-box" type="text" id="evidence-record" placeholder="Paste the image URL here"><br>
+            <div id="evidence-type-two">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceType('evidence-type-two')">+</button>
+                </div>
+            </div><br>
             <label for="arrest-or-inspect-evidence" style="font-weight: bold;">Arrest Record or Inspect(ICD)</label><br>
-            <input class="input-box" type="text" id="arrest-or-inspect-evidence" placeholder="Paste the image URL here"><br>
+            <div id="evidence-type-three">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceType('evidence-type-three')">+</button>
+                </div>
+            </div><br>
             <label for="video-or-dashcam-evidence" style="font-weight: bold;">Evidence or Dashcam</label><br>
             <input class="input-box" type="text" id="video-or-dashcam-evidence" placeholder="Paste the URL/Chatlog here"><br>
         </div>
