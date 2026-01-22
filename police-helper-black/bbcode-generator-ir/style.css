@@ -231,7 +231,7 @@ button:hover {
 
 .dropbtn {
     background-color: var(--dropbtn-background);
-    color: var(--text-color-white-1);
+    color: white;
     padding: 10px 20px;
     font-size: 16px;
     border: 10px 10px 10px var(--dropbtn-background);
@@ -351,4 +351,5 @@ button:hover {
     background: #dc3545;
     color: white;
     border-color: #dc3545;
+
 }
