@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Code Generator Flight Report</title>
+    <link rel="icon" href="image/website-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="margin: 20px;">
+        <div class="header">
+            <h1>💻 Flight Report (BB Code Generator)</h1>
+        </div>
+
+        <div class="section">
+            <h2>📋 Flight Report Information</h2>
+            <label for="officer-name" style="font-weight: bold;">Officer Name</label><br>
+            <input class="input-box" type="text" id="officer-name" placeholder="Firstname Lastname"><br>
+            <label for="date" style="font-weight: bold;">Date</label><br>
+            <input class="input-box" type="date" id="date"><br>
+            <label for="report-number" style="font-weight: bold;">Report Number</label><br>
+            <input class="input-box" type="text" id="report-number" placeholder="Don't use #, just type the number"><br>
+            <label for="duration" style="font-weight: bold;">Duration</label><br>
+            <input class="input-box" type="text" id="duration" placeholder="Duration"><br>
+            <label for="callsign" style="font-weight: bold;">Unit Callsign</label><br>
+            <input class="input-box" type="text" id="callsign" placeholder="Callsign"><br>
+            <label for="patrol-partner" style="font-weight: bold;">Patrol Partner</label><br>
+            <input class="input-box" type="text" id="patrol-partner" placeholder="Partner"><br>
+        </div>
+        <div class="section">
+            <h2>🎥 Resource Information</h2>
+            <label for="take-off-proof" style="font-weight: bold;">Take off and proof unit on field ((/TEAM ON))</label><br>
+            <div id="evidence-air-one">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceOneInput()">+</button>
+                </div>
+            </div><br>
+            <label for="take-off-proof" style="font-weight: bold;">Notable Situation (Optional)</label><br>
+            <div id="evidence-air-two">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceTwoInput()">+</button>
+                </div>
+            </div><br>
+            <label for="take-off-proof" style="font-weight: bold;">Landing</label><br>
+            <div id="evidence-air-three">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceThreeInput()">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>🖨 Result(s)</h2>
+            <button class="copy" onclick="copyBBCode()">Copy BBCode</button><br>
+            <div class="section-two">
+            <span id="output-code" class="output-code-display"></span></div>
+        </div>
+    </div>
+    <div  style="text-align: center; margin-top: 20px;">
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

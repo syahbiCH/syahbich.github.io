@@ -1,0 +1,452 @@
+:root {
+    --white-color-1: #ffffff;
+    --black-color-1: #1c1c1c;
+    --text-color-white-1: #d9d9d9;
+    --background-color-1: #1d2428;
+    --thead-color-1: #2c2c2c;
+    --td-color-1: #232323;
+    --output-display-1: #2e2e2e;
+}
+
+a{
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background-color-1);
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    background: var(--black-color-1);
+    border: 1px solid var(--black-color-1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+.player-input {
+    background: var(--black-color-1);
+    border: 1px solid var(--black-color-1);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: white;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #2e2e2e;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #2e2e2e;
+    flex: 1;
+    min-width: 200px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    color: white;
+    border-color: #300055;
+}
+
+.section {
+    background: var(--black-color-1);
+    border: 1px solid var(--black-color-1);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.search-input-group label {
+    font-weight: bold;
+    color: var(--text-color-white-1);
+}
+
+#searchCharge {
+    flex: 1;
+    min-width: 250px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+thead {
+    background: var(--thead-color-1);
+    color: var(--text-color-white-1);
+    border: 1px solid var(--thead-color-1);
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+}
+
+tbody tr:hover {
+    background-color: #2c2c2c;
+}
+
+button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: #fff;
+    color: #333;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+.add-btn {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.back-btn{
+    background-color: gray;
+    transition: background-color 0.3s;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-btn:hover{
+    background-color: #0056B3;
+}
+
+.copy-btn {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-btn:hover {
+    background: #00DD00;
+    color: white;
+    font-weight: bold;
+    border-color: #00DD00;
+    box-shadow: 0px 0px 10px #4d4d4d;
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-imp-btn {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+    border-radius: 10px
+}
+
+.copy-imp-btn:hover {
+    background: #00DD00;
+    color: white;
+    border-color: #00DD00;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px #4d4d4d;
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+    font-weight: bold;
+    transition: color 0.3s,border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+    border-radius: 10px
+}
+
+.remove-btn:hover{
+    background: #62009f;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px #4d4d4d;
+    border-color: #62009f;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.added-btn:hover{
+    background: #ffffff;
+    color: rgb(255, 255, 255);
+    border-color: #ffffff;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.added-btn {
+    background: #ffc107;
+    color: black;
+    border-color: #ffc107;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-search-button{
+    border-radius: 10px;
+    background-color: #007BFF;
+    border-color: #007BFF;
+    font-weight: bold;
+    color: white;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-search-button-1
+{
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: bold;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-search-button:hover{
+    background-color: #00DD00;
+    border-color: #00DD00;
+    font-weight: bold;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-search-button-1:hover{
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: bold;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.search-action-btn{
+    background-color: #260078;
+    font-weight: bold;
+    border-color: #260078;  
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.search-action-btn:hover{
+    background: #ffc107;
+    font-weight: bold;
+    color: black;
+    border-color: #ffc107;
+    box-shadow: 0px 0px 10px #4d4d4d;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.summary-table {
+    background: #e9ecef;
+    border: 1px solid #ddd;
+    color: white;
+    border-radius: 5px;
+}
+
+.summary-table th {
+    background: var(--thead-color-1);
+    border: 1px solid var(--thead-color-1);
+}
+
+.summary-table td {
+    background: var(--td-color-1);
+    border: 1px solid var(--thead-color-1);
+}
+
+.td-charges-table {
+    background: var(--td-color-1);
+    color: white;
+    border: 1px solid var(--thead-color-1);
+}
+
+.summary-table .copy-btn {
+    margin-left: 10px;
+}
+
+.code-display {
+    font-family: monospace;
+    background: var(--output-display-1);
+    color: white;
+    padding: 8px 12px;
+    border: 1px solid var(--output-display-1);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.arrest-display{
+    font-family: monospace;
+    background: var(--output-display-1);
+    color: white;
+    padding: 8px 12px;
+    border: 1px solid var(--output-display-1);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.white-text{
+    color: white;
+}
+
+.command-display {
+    font-family: monospace;
+    background: var(--output-display-1);
+    color: white;
+    padding: 8px 12px;
+    border: 1px solid var(--output-display-1);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .input-group, .search-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input[type="text"] {
+        min-width: auto;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Type row background colors */
+.type-ticket {
+    background-color: #4f4f00 !important; /* Yellow */
+    margin-bottom: 5px;
+}
+
+.type-ticket td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.type-ticket td:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.type-tag {
+    background-color: #002141 !important; /* Blue */
+    margin-bottom: 5px;
+}
+
+.type-tag td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.type-tag td:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.type-crime {
+    background-color: #4d0000 !important; /* Red */
+    margin-bottom: 5px;
+}
+
+.type-crime td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.type-crime td:last-child {
+    border-radius: 0 10px 10px 0;
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Code Generator Incident Report</title>
+    <link rel="icon" href="image/website-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="margin: 20px;">
+        <div class="header">
+            <h1>💻 Incident Report (BB Code Generator)</h1>
+        </div>
+
+        <div class="section">
+            <h2>📋 Incident Report Information</h2>
+            <label for="caseid" style="font-weight: bold;">Incident Report case</label><br>
+            <input class="input-box" type="text" id="caseid" placeholder="Enter the case, without (#)"><br>
+            <label for="ir-type" style="font-weight: bold;">Incident Report type</label><br>
+            <div class="dropdown">
+                <button id="ir-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
+                <div id="dropdownContent" class="dropdown-content">
+                    <a onclick="selectOption('OIS', 'ir-type')">OIS - Officer Involved Shooting</a>
+                    <a onclick="selectOption('LERI', 'ir-type')">LERI - Law Enforcement Related Injury</a>
+                    <a onclick="selectOption('ICD', 'ir-type')">ICD - In Custody Death</a>
+                    <a onclick="selectOption('NTUD', 'ir-type')">NTUD - Non-Tactical Unintentional Discharge</a>
+                    <a onclick="selectOption('TUD', 'ir-type')">TUD - Tactical Unintentional Discharge</a>
+                    <a onclick="selectOption('CUOF', 'ir-type')">CUOF - Categorial Use of Force</a>
+                </div>
+            </div>
+            <br>
+            <label for="location" style="font-weight: bold;">Incident Report location</label><br>
+            <input class="input-box" type="text" id="location" placeholder="Enter the location"><br>
+            <label for="date" style="font-weight: bold;">Date of Incident</label><br>
+            <input class="input-box" type="date" id="date">
+        </div>
+
+        <div class="section">
+            <h2>😬 Suspect Information</h2>
+            <label for="suspect-name" style="font-weight: bold;">Suspect name</label><br>
+            <input class="input-box" type="text" id="suspect-name" placeholder="Firstname Lastname"><br>
+            <label for="suspect-activity" style="font-weight: bold;">Precise Activity Prior To Use Of Foce</label><br>
+            <input class="input-box" type="text" id="suspect-reason" placeholder="i.e. assaulting, fleeing, passive resistances, etc."><br>
+            <label for="suspect-weapon" style="font-weight: bold;">Weapon(s)</label><br>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_1">
+                    <span class="checkmark"></span>
+                    N/A
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_2">
+                    <span class="checkmark"></span>
+                    Knife
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_3">
+                    <span class="checkmark"></span>
+                    Vehicle
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_4">
+                    <span class="checkmark"></span>
+                    Bite
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_5">
+                    <span class="checkmark"></span>
+                    Firearm
+                </label>
+                <input class="input-box" type="text" id="weapon-firearm-desc" placeholder="Do not fill in this section if you do not have anything to explain">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_6">
+                    <span class="checkmark"></span>
+                    Blunt object
+                </label>
+                <input class="input-box" type="text" id="weapon-blunt-object-desc" placeholder="Do not fill in this section if you do not have anything to explain">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_7">
+                    <span class="checkmark"></span>
+                    Hands/feet
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox1_8">
+                    <span class="checkmark"></span>
+                    Other
+                </label>
+                <input class="input-box" type="text" id="weapon-other-desc" placeholder="Do not fill in this section if you do not have anything to explain">
+            </div>
+            <br>
+            <label for="suspect-influence" style="font-weight: bold;">Under influence</label><br>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox2_1">
+                    <span class="checkmark"></span>
+                    N/A
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox2_2">
+                    <span class="checkmark"></span>
+                    Alcohol
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox2_3">
+                    <span class="checkmark"></span>
+                    Drugs
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox2_4">
+                    <span class="checkmark"></span>
+                    Unknown
+                </label>
+            </div>
+            <br>
+            <label for="suspect-injured" style="font-weight: bold;">Injured</label><br>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox3_1">
+                    <span class="checkmark"></span>
+                    Yes
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox3_2">
+                    <span class="checkmark"></span>
+                    No
+                </label>
+                <input class="input-box" type="text" id="suspect-injured-desc" placeholder="Do not fill in this section if you do not have anything to explain">
+            </div>
+            <br>
+            <label for="suspect-treated" style="font-weight: bold;">Treated by</label><br>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox4_1">
+                    <span class="checkmark"></span>
+                    N/A
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox4_2">
+                    <span class="checkmark"></span>
+                    Officer
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox4_3">
+                    <span class="checkmark"></span>
+                    Fire Department
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox4_4">
+                    <span class="checkmark"></span>
+                    Emergency Room
+                </label>
+            </div>
+        </div>
+        <div class="section">
+            <h2>👮‍♀️👮‍♂️ Officer Information</h2>
+            <label for="officer-name" style="font-weight: bold;">Fullname</label><br>
+            <input class="input-box" type="text" id="officer-name" placeholder="Firstname Lastname"><br>
+            <label for="person-in-charge-name" style="font-weight: bold;">Person in-charge of use of force</label><br>
+            <input class="input-box" type="text" id="person-in-charge-name" placeholder="Rank Firstname Lastname"><br>
+            <label for="uniform" style="font-weight: bold;">Uniform</label><br>
+            <div class="dropdown">
+                <button id="uniform-type" class="dropbtn" onclick="toggleDropdownUniform()">Pilih Opsi</button>
+                <div id="dropdownContent-uniform" class="dropdown-content">
+                    <a onclick="selectOption('Patrol uniform', 'uniform-type')">Patrol uniform</a>
+                    <a onclick="selectOption('Tactical', 'uniform-type')">Tactical</a>
+                    <a onclick="selectOption('Plain clothes', 'uniform-type')">Plain clothes</a>
+                </div>
+            </div>
+            <br>
+            <label for="weapon-used" style="font-weight: bold;">Weapon used at time of incident</label><br>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_1">
+                    <span class="checkmark"></span>
+                    Handgun
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_2">
+                    <span class="checkmark"></span>
+                    Rubber Shotgun
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_3">
+                    <span class="checkmark"></span>
+                    Lethal Shotgun
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_4">
+                    <span class="checkmark"></span>
+                    Submachine Guns
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_5">
+                    <span class="checkmark"></span>
+                    Automatic Rifle
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_6">
+                    <span class="checkmark"></span>
+                    Tazer
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="checkbox5_7">
+                    <span class="checkmark"></span>
+                    Spike Trip
+                </label>
+            </div>
+        </div>
+        <div class="section">
+            <h2>🎥 Resource Information</h2>
+            <label for="id-card-evidence" style="font-weight: bold;">Identity Card (Suspect's /showid)</label><br>
+            <div id="evidence-type-one">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceType('evidence-type-one')">+</button>
+                </div>
+            </div><br>
+            <label for="evidence-record" style="font-weight: bold;">Evidence Record (/mdc > search > (Suspect_Name) > Evidence Collected)</label><br>
+            <div id="evidence-type-two">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceType('evidence-type-two')">+</button>
+                </div>
+            </div><br>
+            <label for="arrest-or-inspect-evidence" style="font-weight: bold;">Arrest Record or Inspect(ICD)</label><br>
+            <div id="evidence-type-three">
+                <div class="input-group-box">
+                    <input class="input-box" type="text" placeholder="Paste your image link, don\'t use [img][/img]">
+                    <button class="add-btn" onclick="addEvidenceType('evidence-type-three')">+</button>
+                </div>
+            </div><br>
+            <label for="video-or-dashcam-evidence" style="font-weight: bold;">Evidence or Dashcam</label><br>
+            <input class="input-box" type="text" id="video-or-dashcam-evidence" placeholder="Paste the URL/Chatlog here"><br>
+        </div>
+        <div class="section">
+            <h2>🖨 Result(s)</h2>
+            <button class="copy-two" onclick="copyTopicName()">Copy Topic Name</button><br>
+            <div class="section">
+            <span id="output-subject" class="output-code-display"></span></div>
+            <button class="copy" onclick="copyBBCode()">Copy BBCode</button><br>
+            <div class="section-two">
+            <span id="output-code" class="output-code-display"></span></div>
+        </div>
+    </div>
+    <div  style="text-align: center; margin-top: 20px;">
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

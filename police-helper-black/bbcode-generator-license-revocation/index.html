@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Code Generator Flight Report</title>
+    <link rel="icon" href="image/website-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="margin: 20px;">
+        <div class="header">
+            <h1>💻 Fligh Report (BB Code Generator)</h1>
+        </div>
+
+        <div class="section">
+            <h2>📋 License Revocation Information</h2>
+            <label for="officer-name" style="font-weight: bold;">Officer Name</label><br>
+            <input class="input-box" type="text" id="officer-name" placeholder="Firstname Lastname"><br>
+            <label for="license-holder" style="font-weight: bold;">License Holder</label><br>
+            <input class="input-box" type="text" id="license-holder" placeholder="Firstname Lastname"><br>
+            <label for="license-type" style="font-weight: bold;">License Type</label><br>
+            <div class="dropdown">
+                <button id="license-type" class="dropbtn" onclick="toggleDropdown()">Pilih Opsi</button>
+                <div id="dropdownContent" class="dropdown-content">
+                    <a onclick="selectOption('Heavy Truck', 'license-type')">Heavy Truck</a>
+                    <a onclick="selectOption('Lorry Truck', 'license-type')">Lorry Truck</a>
+                    <a onclick="selectOption('Impound', 'license-type')">Impound</a>
+                </div>
+            </div>
+            <br>
+            <label for="date" style="font-weight: bold;">Date Revoked</label><br>
+            <input class="input-box" type="date" id="date"><br>
+            <label for="reason" style="font-weight: bold;">Reason</label><br>
+            <input class="input-box" type="text" id="reason" placeholder="Reason/Charge"><br>
+            <label for="evidence" style="font-weight: bold;">Evidence</label><br>
+            <input class="input-box" type="text" id="evidence" placeholder="Chatog/Screenshoot while you revoking his or her license (Use [img][/img] if image)"><br>
+        </div>
+        <div class="section">
+            <h2>🖨 Result(s)</h2>
+            <button class="copy-two" onclick="copyTopicName()">Copy Topic Name</button><br>
+            <div class="section">
+            <span id="output-subject" class="output-code-display"></span></div>
+            <button class="copy" onclick="copyBBCode()">Copy BBCode</button><br>
+            <div class="section-two">
+            <span id="output-code" class="output-code-display"></span></div>
+        </div>
+    </div>
+    <div  style="text-align: center; margin-top: 20px;">
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

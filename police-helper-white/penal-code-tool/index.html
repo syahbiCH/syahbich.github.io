@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penal Code Tool</title>
+    <link rel="icon" href="image/website-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="margin: 20px;">
+        <div class="header">
+            <h1>🚔 Penal Code Tool</h1>
+        </div>
+
+        <div class="player-input">
+            <div class="input-group">
+                <label for="playerId">👤 Player ID:</label>
+                <input type="text" id="playerId" placeholder="Enter Player ID for Arrest/SU/Ticket command">
+                <label for="vehicleId">🚗 Vehicle ID:</label>
+                <input type="text" id="vehicleId" placeholder="Enter Vehicle ID for Impound command">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Added Charge(s) list</h2>
+            <table id="addedChargesTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Jailtime</th>
+                        <th>Fine</th>
+                        <th>Bail</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be added here -->
+                </tbody>
+            </table>
+
+            <table id="summaryTable" class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🔢 Code</td>
+                        <td><span id="code" class="code-display"></span></td>
+                        <td><button class="copy-btn" onclick="copyCode()">📋 Copy</button></td>
+                    </tr>
+                    <tr>
+                        <td>⚖️ Arrest Place</td>
+                        <td><span id="arrest-place" class="arrest-display"></span></td>
+                        <td><span id="arrest-place-output" class="arrest-place-display"></span></td>
+                    </tr>
+                    <tr>
+                        <td>⚖️ Arrest Command</td>
+                        <td><span id="command" class="command-display"></span></td>
+                        <td><button class="copy-btn" onclick="copyCommand()">📋 Copy</button></td>
+                    </tr>
+                    <tr>
+                        <td>🚗 Impound Command</td>
+                        <td><span id="impoundCommand" class="command-display"></span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>🚗 Impound Manual</td>
+                        <td></td>
+                        <td><a onclick="searchImpoundManual()"><button class="copy-btn">🔍 Search</button></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section search-section">
+            <h2>🧾 Charge(s)</h2>
+            <div class="search-input-group">
+                <label for="searchCharge">Search by Charge Number:</label>
+                <input type="text" id="searchCharge" placeholder="Search by charge '#' or 'Description', You can search more than 1">
+            </div>
+            <table id="chargesTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Jailtime</th>
+                        <th>Fine</th>
+                        <th>Bail</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+            <div id="addAllContainer" style="display: none; text-align: center; margin-top: 10px;">
+                <button id="addAllBtn" class="copy-btn" onclick="addAllCharges()">➕ Add All</button>
+            </div>
+        </div>
+    </div>
+
+    <div  style="text-align: center; margin-top: 20px;">
+        <a href="https://syahbich.github.io/police-helper/">
+            <button class="back-btn">Back to menu</button>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
