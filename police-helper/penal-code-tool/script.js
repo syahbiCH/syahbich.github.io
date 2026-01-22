@@ -203,6 +203,12 @@ function formatDirectToOfficialPenalCode(displayNumber)
     return `<a href="https://police.san-andreas.net/viewtopic.php?t=148639#:~:text=${displayNumber.replace(' ','%20')}"><button class="copy-search-button-1">🔗</button></a>`;
 }
 
+function searchImpoundManual()
+{
+    const playerId = document.getElementById('playerId').value || 'None';
+    window.open(`https://police.san-andreas.net/search.php?keywords=${playerId.replace(' ','+')}&terms=all&author=&fid%5B%5D=169&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&t=0&submit=Search`, '_blank');
+}
+
 function populateChargesTable(filteredCharges = charges)
 {
     chargesTableBody.innerHTML = '';
