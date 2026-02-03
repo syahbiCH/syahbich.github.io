@@ -264,7 +264,14 @@ button:hover {
     transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-.copy-search-button:hover,.copy-search-button-1:hover{
+.copy-search-button:hover{
+    background-color: #00DD00;
+    border-color: #00DD00;
+    font-weight: bold;
+    transition: border-color 0.3s,background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.copy-search-button-1:hover{
     background-color: transparent;
     border-color: transparent;
     font-weight: bold;
@@ -418,3 +425,4 @@ button:hover {
 .type-crime td:last-child {
     border-radius: 0 10px 10px 0;
 }
+
