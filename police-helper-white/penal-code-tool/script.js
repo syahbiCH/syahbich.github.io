@@ -400,7 +400,7 @@ function updateCodeAndCommand()
     const playerId = document.getElementById('playerId').value || '0';
     const vehicleId = document.getElementById('vehicleId').value || '0';
     codeElement.textContent = codeNumbers.join(', ');
-    commandElement.textContent = `/arrest ${playerId.replace(' ','_')} ${totalJailtime} ${totalFine} ${totalBail}`;
+    commandElement.textContent = `/arrest ${playerId.replace(' ','_')} ${totalJailtime} ${totalFine} ${totalBail > 25000 ? `${25000}` : `${totalBail}`}`;
     impoundCommandElement.textContent = `/markimpound ${vehicleId} (...)`;
     document.getElementById('arrest-place').textContent = (totalJailtime > 60 ? `San Andreas Correctional Facility` : `Headquarter/Precint`);
 }
@@ -440,3 +440,4 @@ playerIdInput.addEventListener('input', updateCodeAndCommand);
 vehicleIdInput.addEventListener('input', updateCodeAndCommand);
 populateChargesTable();
 updateCodeAndCommand();
+
