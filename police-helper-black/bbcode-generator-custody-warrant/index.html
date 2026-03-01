@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB Code Generator Arrest Warrant</title>
+    <link rel="icon" href="image/website-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="margin: 20px;">
+        <div class="header">
+            <h1>💻 Custody Warrant (BBCode Generator)</h1>
+        </div>
+        <div class="section">
+            <h2>😬 Suspect Information</h2>
+            <label for="gender" style="font-weight: bold;">Gender</label><br>
+            <div class="dropdown">
+                <button id="gender" class="dropbtn" onclick="toggleDropdownGender()">Pilih Opsi</button>
+                <div id="dropdownContent-gender" class="dropdown-content">
+                    <a onclick="selectOption('Male', 'gender')">Male</a>
+                    <a onclick="selectOption('Female', 'gender')">Female</a>
+                </div>
+            </div>
+            <br>
+            <label for="suspect-clothes" style="font-weight: bold;">Suspect Clothes</label><br>
+            <div class="dropdown">
+                <button id="clothes" class="dropbtn" onclick="toggleDropdownClothes()">Pilih Opsi</button>
+                <div id="dropdownContent-clothes" class="dropdown-content">
+                </div>
+            </div>
+            <br>
+            <label for="description-suspect" style="font-weight: bold;">Description of suspect</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="description-suspect" placeholder="Describe the suspect">
+            </div>
+        </div>
+        <div class="section">
+            <h2>👮‍♂️👮‍♀️ Officer Information</h2>
+            <label for="officer" style="font-weight: bold;">Officer Name</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="officer" placeholder="Firstname Lastname">
+            </div>
+            <br>
+            <label for="rank" style="font-weight: bold;">Rank</label><br>
+            <div class="dropdown">
+                <button id="rank" class="dropbtn" onclick="toggleDropdownRank()">Pilih Opsi</button>
+                <div id="dropdownContent-rank" class="dropdown-content">
+                    <a onclick="selectOption('Commissioner', 'rank')">Commissioner</a>
+                    <a onclick="selectOption('Chief of Police', 'rank')">Chief of Police</a>
+                    <a onclick="selectOption('Assistant Chief of Police', 'rank')">Assistant Chief of Police</a>
+                    <a onclick="selectOption('Deputy Chief of Police', 'rank')">Deputy Chief of Police</a>
+                    <a onclick="selectOption('Commander', 'rank')">Commander</a>
+                    <a onclick="selectOption('Secretary Chief of Police', 'rank')">Secretary Chief of Police</a>
+                    <a onclick="selectOption('Captain', 'rank')">Captain</a>
+                    <a onclick="selectOption('Lieutenant', 'rank')">Lieutenant</a>
+                    <a onclick="selectOption('Sergeant II', 'rank')">Sergeant II</a>
+                    <a onclick="selectOption('Sergeant I', 'rank')">Sergeant I</a>
+                    <a onclick="selectOption('Probationary Sergeant', 'rank')">Probationary Sergeant</a>
+                    <a onclick="selectOption('Detective Captain', 'rank')">Detective Captain</a>
+                    <a onclick="selectOption('Detective Lieutenant', 'rank')">Detective Lieutenant</a>
+                    <a onclick="selectOption('Detective III', 'rank')">Detective III</a>
+                    <a onclick="selectOption('Detective II', 'rank')">Detective II</a>
+                    <a onclick="selectOption('Detective I', 'rank')">Detective I</a>
+                    <a onclick="selectOption('Senior Intelligence Officer', 'rank')">Senior Intelligence Officer</a>
+                    <a onclick="selectOption('Intelligence Officer', 'rank')">Intelligence Officer</a>
+                    <a onclick="selectOption('Police Officer III', 'rank')">Police Officer III</a>
+                    <a onclick="selectOption('Police Officer II', 'rank')">Police Officer II</a>
+                    <a onclick="selectOption('Police Officer I/Probationary Officer', 'rank')">Police Officer I/Probationary Officer</a>
+                    <a onclick="selectOption('Senior Reserve Officer', 'rank')">Senior Reserve Officer</a>
+                    <a onclick="selectOption('Junior Reserve Officer', 'rank')">Junior Reserve Officer</a>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>🎥 Resource Information</h2>
+            <label for="evidence" style="font-weight: bold;">Arrest Evidence (/mdc > "Suspect_Name" > Arrest Record > Your Arrest Record of Suspect)</label><br>
+            <div class="officer-input-group">
+                <input class="input-box" type="text" id="evidence" placeholder="Paste your image link, don't use [img][/img]">
+            </div>
+        </div>
+        <div class="section">
+            <h2>🖨 Result(s)</h2>
+            <button class="copy" onclick="copyBBCode()">Copy BBCode</button><br>
+            <div class="section-two">
+            <span id="output-code" class="output-code-display"></span></div>
+        </div>
+    </div>
+    <div  style="text-align: center; margin-top: 20px;">
+        <a href="https://syahbich.github.io/police-helper-black/">
+            <button class="back-btn">Back to menu</button>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
