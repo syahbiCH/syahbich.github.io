@@ -206,7 +206,9 @@ function formatDirectToOfficialPenalCode(displayNumber)
 function searchImpoundManual()
 {
     const playerId = document.getElementById('playerId').value || 'None';
-    window.open(`https://police.san-andreas.net/search.php?keywords=${playerId.replace(' ','+')}&terms=all&author=&fid%5B%5D=169&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&t=0&submit=Search`, '_blank');
+    const search_player1 = playerId.replace('_','+');
+    const search_player2 = search_player1.replace(' ','+');
+    window.open(`https://police.san-andreas.net/search.php?keywords=${search_player2}&terms=all&author=&fid%5B%5D=169&sc=0&sf=titleonly&sr=posts&sk=t&sd=d&st=0&ch=300&t=0&submit=Search`, '_blank');
 }
 
 function populateChargesTable(filteredCharges = charges)
@@ -440,6 +442,7 @@ playerIdInput.addEventListener('input', updateCodeAndCommand);
 vehicleIdInput.addEventListener('input', updateCodeAndCommand);
 populateChargesTable();
 updateCodeAndCommand();
+
 
 
 
