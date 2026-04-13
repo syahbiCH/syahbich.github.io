@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>RED - Meet</title>
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-box">
+    <div class="glass-card">
+        <div class="logo-area">
+            <div class="logo-icon"><img src="image/RED.png" alt="RED_LOGO"></div>
+            <h1>RED Google Meet</h1>
+            <p>Masukan nama Character anda</p>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" id="username-input" placeholder=" " autocomplete="off">
+            <label for="username-input">Firstname_Lastname</label>
+        </div>
+        
+        <button class="btn-join" onclick="startMeet()">
+            <span>Gabung Sekarang</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H1.5a.5.5 0 0 0 0 1h12.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+    <main id="meet-container" style="display:none;">
+        <div id="main-display">
+            <div id="screen-placeholder">Belum ada yang Share Screen</div>
+            <video id="shared-video" autoplay playsinline></video>
+        </div>
+
+        <div id="users-grid">
+            <div class="user-card" id="local-user-card">
+                <div class="avatar-circle" id="local-initial">U</div>
+                <span id="local-name">Anda</span>
+                <video id="local-video-preview" autoplay playsinline muted></video>
+            </div>
+            </div>
+    </main>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <div class="controls-wrapper" id="controls-bar" style="display:none;">
+        
+        <button onclick="toggleControls()" id="toggle-btn" class="toggle-arrow" title="Tampilkan/Sembunyikan">
+            <span class="material-icons">keyboard_arrow_down</span>
+        </button>
+
+        <div class="controls-pill" id="controls-pill">
+            <button onclick="toggleShareScreen()" id="share-btn" class="ctrl-btn btn-share" title="Share Screen">
+                <span class="material-icons">present_to_all</span>
+            </button>
+
+            <button onclick="location.reload()" class="ctrl-btn btn-exit" title="Keluar">
+                <span class="material-icons">call_end</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
