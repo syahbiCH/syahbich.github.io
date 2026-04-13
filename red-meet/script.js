@@ -1,22 +1,21 @@
 // --- KONFIGURASI GLOBAL ---
-const GLOBAL_ID = "RED_DISTRICT_GLOBAL_ROOM"; // ID ini harus sama untuk semua orang
+const GLOBAL_ID = "RED_DISTRICT_GLOBAL_ROOM"; 
 let myStream;
 let isScreenSharing = false;
-let someoneSharing = false;
 let isControlsMinimized = false;
 
-// Inisialisasi Peer dengan ID acak untuk diri sendiri
+// Inisialisasi Peer
 const peer = new Peer(); 
 
 peer.on('open', (myId) => {
     console.log('ID Saya: ' + myId);
-    // Setelah ID kita siap, kita otomatis join ke room global
 });
 
 async function startMeet() {
     const nameInput = document.getElementById('username-input').value;
-    if (!nameInput) return alert("Masukkan nama!");
+    if (!nameInput) return alert("Masukkan nama dulu!");
 
+    // UI Transition
     document.getElementById('login-box').style.display = 'none';
     document.getElementById('meet-container').style.display = 'flex';
     document.getElementById('controls-bar').style.display = 'flex';
@@ -24,18 +23,17 @@ async function startMeet() {
     document.getElementById('local-initial').innerText = nameInput.charAt(0).toUpperCase();
     document.getElementById('local-name').innerText = nameInput + " (Anda)";
 
-    // Ambil akses mic/kamera
+    // 1. Ambil akses Kamera/Mic
     try {
         myStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         document.getElementById('local-video-preview').srcObject = myStream;
         document.getElementById('local-video-preview').style.display = 'block';
     } catch (e) {
-        myStream = new MediaStream(); // Fallback jika ditolak
+        console.log("Kamera ditolak, menggunakan stream kosong.");
+        myStream = new MediaStream();
     }
 
-    // --- LOGIKA GLOBAL ROOM ---
-    
-    // 1. Standby menerima panggilan (jika kita adalah orang pertama/Host)
+    // 2. LISTENER: Menerima panggilan dari orang lain
     peer.on('call', (call) => {
         call.answer(myStream);
         call.on('stream', (remoteStream) => {
@@ -43,16 +41,16 @@ async function startMeet() {
         });
     });
 
-    // 2. Broadcast keberadaan kita
-    // Trik: Kita coba panggil ID "GLOBAL_ID". 
-    // Tapi karena PeerJS publik tidak bisa 'broadcast', cara paling benar di GitHub 
-    // adalah setiap user mencoba memanggil Host utama.
-    const call = peer.call(GLOBAL_ID, myStream);
-    if(call) {
-        call.on('stream', (remoteStream) => {
-            addRemoteUser(remoteStream, GLOBAL_ID);
-        });
-    }
+    // 3. AUTO-JOIN: Mencoba memanggil Host Utama (Pintu Masuk)
+    // Kita beri jeda sedikit agar Peer benar-benar siap
+    setTimeout(() => {
+        const call = peer.call(GLOBAL_ID, myStream);
+        if (call) {
+            call.on('stream', (remoteStream) => {
+                addRemoteUser(remoteStream, GLOBAL_ID);
+            });
+        }
+    }, 1000);
 }
 
 function addRemoteUser(stream, peerId) {
@@ -62,8 +60,12 @@ function addRemoteUser(stream, peerId) {
     const card = document.createElement('div');
     card.className = 'user-card';
     card.id = `user-${peerId}`;
+    
+    // Ambil inisial dari PeerID atau Nama jika tersedia
+    const initial = peerId.charAt(0).toUpperCase();
+
     card.innerHTML = `
-        <div class="avatar-circle">${peerId.charAt(0).toUpperCase()}</div>
+        <div class="avatar-circle">${initial}</div>
         <span>Peserta</span>
         <video autoplay playsinline id="video-${peerId}"></video>
     `;
@@ -74,37 +76,6 @@ function addRemoteUser(stream, peerId) {
     videoElement.style.display = 'block';
 }
 
-async function startMeet() {
-    const nameInput = document.getElementById('username-input').value;
-    if (!nameInput) return alert("Masukkan nama dulu!");
-
-    document.getElementById('login-box').style.display = 'none';
-    document.getElementById('meet-container').style.display = 'flex';
-    document.getElementById('controls-bar').style.display = 'flex';
-
-    document.getElementById('local-initial').innerText = nameInput.charAt(0).toUpperCase();
-    document.getElementById('local-name').innerText = nameInput + " (Anda)";
-
-    // Ambil akses kamera/mic agar PeerJS punya stream untuk dikirim
-    try {
-        myStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-        document.getElementById('local-video-preview').srcObject = myStream;
-        document.getElementById('local-video-preview').style.display = 'block';
-    } catch (e) {
-        console.log("Kamera tidak diizinkan, mengirim stream kosong.");
-        myStream = new MediaStream(); // Fallback jika kamera ditolak
-    }
-
-    // LISTENER: Menerima panggilan dari orang lain
-    peer.on('call', (call) => {
-        call.answer(myStream);
-        call.on('stream', (remoteStream) => {
-            addRemoteUser(remoteStream, call.peer);
-        });
-    });
-}
-
-// Fungsi menampilkan Share Screen di layar utama
 function handleRemoteStream(stream) {
     const mainVideo = document.getElementById('shared-video');
     const placeholder = document.getElementById('screen-placeholder');
@@ -119,22 +90,17 @@ function handleRemoteStream(stream) {
     };
 }
 
-// Fungsi Share Screen (Sama seperti sebelumnya dengan perbaikan stream)
 async function toggleShareScreen() {
     const shareBtn = document.getElementById('share-btn');
     try {
         if (!isScreenSharing) {
             const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-            
-            // Tampilkan di layar besar sendiri
             handleRemoteStream(screenStream);
-            
             isScreenSharing = true;
             shareBtn.classList.add('active');
-
-            // Logika Broadcast: Di sini kita harus memanggil ID lawan
-            // Contoh manual: peer.call('ID_TEMAN', screenStream);
-
+            
+            // Note: Untuk sistem global tanpa database, share screen hanya akan 
+            // terlihat oleh orang yang kita panggil/memanggil kita saat itu.
             screenStream.getVideoTracks()[0].onended = () => stopLocalShare();
         } else {
             stopLocalShare();
