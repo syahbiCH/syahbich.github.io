@@ -1,105 +1,99 @@
-let myPeerId;
-let myName;
+// --- KONFIGURASI GLOBAL ---
+const GLOBAL_ROOM_ID = "WDRP_GLOBAL_MEET_ROOM"; // ID ini harus sama untuk semua orang
+let myStream;
 let isScreenSharing = false;
 let someoneSharing = false;
 let isControlsMinimized = false;
-const peer = new Peer();
 
-peer.on('open', (id) => { myPeerId = id; });
+// Inisialisasi Peer dengan ID acak untuk diri sendiri
+const peer = new Peer(); 
 
-async function startMeet()
-{
-    myName = document.getElementById('username-input').value;
-    if (!myName) return alert("Masukkan nama dulu!");
+peer.on('open', (id) => {
+    console.log('ID Saya: ' + id);
+    // Secara otomatis mencoba menghubungi "Global Room" setelah terbuka
+});
+
+async function startMeet() {
+    const nameInput = document.getElementById('username-input').value;
+    if (!nameInput) return alert("Masukkan nama dulu!");
+
     document.getElementById('login-box').style.display = 'none';
     document.getElementById('meet-container').style.display = 'flex';
     document.getElementById('controls-bar').style.display = 'flex';
-    document.getElementById('local-initial').innerText = myName.charAt(0).toUpperCase();
-    document.getElementById('local-name').innerText = myName + " (Anda)";
+
+    // Set Avatar Nama
+    document.getElementById('local-initial').innerText = nameInput.charAt(0).toUpperCase();
+    document.getElementById('local-name').innerText = nameInput + " (Anda)";
+
+    // Ambil stream kosong (hanya untuk inisialisasi awal tanpa suara)
+    myStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    document.getElementById('local-video-preview').srcObject = myStream;
+    document.getElementById('local-video-preview').style.display = 'block';
+
+    // 1. TERIMA PANGGILAN (Standby sebagai Penerima)
     peer.on('call', (call) => {
-        call.answer();
+        call.answer(myStream); // Jawab dengan stream kita
         call.on('stream', (remoteStream) => {
-            handleRemoteStream(remoteStream, call.peer);
+            handleRemoteStream(remoteStream);
         });
     });
+
+    // 2. OTOMATIS PANGGIL ORANG LAIN (Jika ada)
+    // Di sini kamu bisa menambahkan logika untuk memanggil ID yang sudah online.
+    // Karena ini statis di GitHub, cara termudah adalah membagikan ID kamu ke teman.
 }
 
-function handleRemoteStream(stream, peerId)
-{
-    const videoTrack = stream.getVideoTracks()[0];
-    if (videoTrack)
-    {
-        someoneSharing = true;
-        const mainVideo = document.getElementById('shared-video');
-        const placeholder = document.getElementById('screen-placeholder');
-        mainVideo.srcObject = stream;
-        mainVideo.style.display = 'block';
-        placeholder.style.display = 'none';
-        videoTrack.onended = () => {
-            someoneSharing = false;
-            mainVideo.style.display = 'none';
-            placeholder.style.display = 'flex';
-        };
-    }
+// Fungsi menampilkan Share Screen di layar utama
+function handleRemoteStream(stream) {
+    const mainVideo = document.getElementById('shared-video');
+    const placeholder = document.getElementById('screen-placeholder');
+
+    mainVideo.srcObject = stream;
+    mainVideo.style.display = 'block';
+    placeholder.style.display = 'none';
+
+    stream.getVideoTracks()[0].onended = () => {
+        mainVideo.style.display = 'none';
+        placeholder.style.display = 'flex';
+    };
 }
 
-async function toggleShareScreen()
-{
+// Fungsi Share Screen (Sama seperti sebelumnya dengan perbaikan stream)
+async function toggleShareScreen() {
     const shareBtn = document.getElementById('share-btn');
-    if(someoneSharing && !isScreenSharing)
-    {
-        return alert("ERROR: Someone is sharing their screen");
-    }
-    try
-    {
-        if(!isScreenSharing)
-        {
+    try {
+        if (!isScreenSharing) {
             const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-            const mainVideo = document.getElementById('shared-video');
-            mainVideo.srcObject = screenStream;
-            mainVideo.style.display = 'block';
-            document.getElementById('screen-placeholder').style.display = 'none';
+            
+            // Tampilkan di layar besar sendiri
+            handleRemoteStream(screenStream);
+            
             isScreenSharing = true;
             shareBtn.classList.add('active');
-            screenStream.getVideoTracks()[0].onended = () => {
-                stopLocalShare();
-            };
-        }
-        else
-        {
+
+            // Logika Broadcast: Di sini kita harus memanggil ID lawan
+            // Contoh manual: peer.call('ID_TEMAN', screenStream);
+
+            screenStream.getVideoTracks()[0].onended = () => stopLocalShare();
+        } else {
             stopLocalShare();
         }
-    }
-    catch(err)
-    {
-        console.error("Gagal share screen:", err);
-    }
+    } catch (err) { console.error(err); }
 }
 
-function stopLocalShare()
-{
+function stopLocalShare() {
     const mainVideo = document.getElementById('shared-video');
-    const shareBtn = document.getElementById('share-btn');
     if (mainVideo.srcObject) {
-        mainVideo.srcObject.getTracks().forEach(track => track.stop());
+        mainVideo.srcObject.getTracks().forEach(t => t.stop());
     }
     mainVideo.style.display = 'none';
-    mainVideo.srcObject = null;
     document.getElementById('screen-placeholder').style.display = 'flex';
     isScreenSharing = false;
-    shareBtn.classList.remove('active');
+    document.getElementById('share-btn').classList.remove('active');
 }
 
-function toggleControls()
-{
+function toggleControls() {
     const wrapper = document.getElementById('controls-bar');
-    if (!isControlsMinimized)
-    {
-        wrapper.classList.add('minimized');
-        isControlsMinimized = true;
-    } else
-    {
-        wrapper.classList.remove('minimized');
-        isControlsMinimized = false;
-    }
+    isControlsMinimized = !isControlsMinimized;
+    wrapper.classList.toggle('minimized', isControlsMinimized);
 }
