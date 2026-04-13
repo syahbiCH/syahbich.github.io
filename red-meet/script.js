@@ -1,6 +1,7 @@
 // --- KONFIGURASI GLOBAL ---
 const GLOBAL_ID = "RED_DISTRICT_GLOBAL_ROOM"; 
 let myStream;
+let userID;
 let isScreenSharing = false;
 let isControlsMinimized = false;
 
@@ -9,7 +10,19 @@ const peer = new Peer();
 
 peer.on('open', (myId) => {
     console.log('ID Saya: ' + myId);
+    userID = myId;
 });
+
+// Fungsi untuk memanggil ID teman secara manual
+async function callFriend() {
+    const userID = prompt("Masukkan ID Teman kamu:");
+    if (!userID) return;
+
+    const call = peer.call(userID, myStream);
+    call.on('stream', (remoteStream) => {
+        addRemoteUser(remoteStream, userID);
+    });
+}
 
 async function startMeet() {
     const nameInput = document.getElementById('username-input').value;
@@ -25,7 +38,7 @@ async function startMeet() {
 
     // 1. Ambil akses Kamera/Mic
     try {
-        myStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        myStream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
         document.getElementById('local-video-preview').srcObject = myStream;
         document.getElementById('local-video-preview').style.display = 'block';
     } catch (e) {
