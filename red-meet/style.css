@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1a1a2e;
+    color: #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Login Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 26, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.login-box {
+    background: #16213e;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #00fff0;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    background: #0f172a;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: #00fff0;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: #00b3a8;
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 900px;
+    background: #16213e;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 15px;
+}
+
+header h1 {
+    color: #00fff0;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* User List */
+.user-list-section {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 6px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.user-list-section h3 {
+    margin-bottom: 10px;
+    color: #00fff0;
+    border-bottom: 1px solid #16213e;
+    padding-bottom: 5px;
+}
+
+#user-list {
+    list-style: none;
+}
+
+#user-list li {
+    padding: 10px;
+    background: #1a1a2e;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+#user-list li::before {
+    content: "🟢 ";
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+/* Status Card */
+.card {
+    background: #0f172a;
+    padding: 20px;
+    border-radius: 6px;
+    height: 100%;
+}
+
+.card h3 {
+    color: #00fff0;
+    margin-bottom: 15px;
+}
+
+.card p {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Voice Chat Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-overlay" class="overlay">
+        <div class="login-box">
+            <h2>Masuk ke Voice Chat</h2>
+            <input type="text" id="username-input" placeholder="Masukkan username kamu..." autocomplete="off">
+            <button id="join-btn">Gabung</button>
+        </div>
+    </div>
+
+    <div id="app-container" class="container hidden">
+        <header>
+            <h1>🔊 Global Voice Room</h1>
+            <p>Semua pengguna berada di satu ruang suara yang sama.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="user-list-section">
+                <h3>User Terhubung (<span id="user-count">0</span>)</h3>
+                <ul id="user-list">
+                    </ul>
+            </div>
+
+            <div class="status-section">
+                <div class="card">
+                    <h3>Status Kamu</h3>
+                    <p id="my-name">Username: -</p>
+                    <p id="connection-status">Menghubungkan ke server...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="remote-audios"></div>
+
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
