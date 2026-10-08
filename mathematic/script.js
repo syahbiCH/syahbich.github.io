@@ -26,7 +26,7 @@ const materialsData = [
     {
         id: "logic-1",
         title: "PEMDAS (Penting)",
-        category: "Logika",
+        category: "Umum",
         summary: "Aturan dasar Matematika terkait urutan operasi bilangan Matematika.",
         content: String.raw`
             <div class="space-y-4">
@@ -92,7 +92,7 @@ const materialsData = [
                 <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Apa itu Aritmatika Dasar?</h3>
                 <p><strong>Aritmatika Dasar</strong> adalah cabang Matematika fundamental, cabang dasar dari Matematika ini mempelajari tentang pertambahan, pengurangan, perkalian, dan pembagian bilangan biasa, meskipun terdengar tidak berguna dan tidak serumit cabang lain, namun Aritmatika Dasar menjadi pondasi utama konsep di Matematika cabang lain, yang artinya untuk mempelajari bidang Matematika tingkat lanjut, sangat disarankan untuk menguasai Aritmatika Dasar terlebih dahulu.</p>
                 <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">A. Pertambahan.</h3>
-                <p><strong>Pertambahan</strong> di Matematika sering disimbolkan dengan $+$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kanan simbol tersebut($a+b$).<br>
+                <p><strong>Pertambahan</strong> di Matematika sering disimbolkan dengan $+$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kanan simbol tersebut($x+y$).<br>
                 <br>
                 Simplenya, pertambahan atau $+$, menambahkan suatu angka dengan angka penambah sesuai dengan urutannya, contohnya: <br>
                 $10+2$<br>
@@ -100,7 +100,7 @@ const materialsData = [
                 <br>
                 Urutan angka ke-10 ditambah 1 sebanyak 2 kali, maka urutan angka selanjutnya adalah 11, ditambah lagi maka 12, maka kita mendapatkan hasilnya adalah <strong>12</strong>.</p>
                 <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">B. Pengurangan.</h3>
-                <p><strong>Pengurangan</strong> di Matematika sering disimbolkan dengan $-$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kana simbol tersebut($a-b$).<br>
+                <p><strong>Pengurangan</strong> di Matematika sering disimbolkan dengan $-$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kana simbol tersebut($x-y$).<br>
                 <br>
                 Hampir mirip seperti <strong>Pertambahan</strong>, namun yang membedakannya, jika pertambahan melanjutkan urutan secara maju, maka pengurangan melanjutkan urutan ke belakang, contohnya seperti 5 ke 4, ke 3, dan seterusnya, contohnya lagi adalah seperti di bawah ini<br>
                 $10-2$<br>
@@ -108,7 +108,7 @@ const materialsData = [
                 <br>
                 Urutan angka ke-10 dikurang 1 sebanyak 2 kali, maka urutan angka sebelum 10 adalah 9, dikurang lagi maka 8, maka kita mendapatkan hasilnya adalah <strong>8</strong>.</p>
                 <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">C. Perkalian.</h3>
-                <p><strong>Perkalian</strong> di Matematika sering disimbolkan dengan $\times$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kanan simbol tersebut($a\times b$).<br>
+                <p><strong>Perkalian</strong> di Matematika sering disimbolkan dengan $\times$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kanan simbol tersebut($x\times y$).<br>
                 <br>
                 <strong>Perkalian</strong> ini bisa dibilang adalah <strong>Pertambahan</strong> yang berulang, karena angka di samping kiri simbol ditambahkan dengan dirinya sendiri sebanyak angka yang berada di samping kanan simbol, mari kita ambil contoh: <br>
                 $10\times2$<br>
@@ -119,7 +119,7 @@ const materialsData = [
                 <br>
                 Dan inilah kenapa <strong>Perkalian</strong> disebut sebagai <strong>Pertambahan</strong> yang berulang, dikarenakan memang bilangan yang ada pada samping kiri simbol ditambah dengan dirinya sendiri sebanyak angka atau nilai yang berada pada samping kanan simbol.</p>
                 <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">D. Pembagian.</h3>
-                <p><strong>Pembagian</strong> di Matematika sering disimbolkan dengan $\div$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kana simbol tersebut($a\div b$).<br>
+                <p><strong>Pembagian</strong> di Matematika sering disimbolkan dengan $\div$, serta dengan kedua bilangan atau angka berada di samping kiri dan samping kana simbol tersebut($x\div y$).<br>
                 <br>
                 <strong>Pembagian</strong> juga hampir sama seperti <strong>Perkalian</strong>, yang membedakannya adalah jika seandainya <strong>Perkalian</strong> adalah <strong>Pertambahan</strong> yang berulang, maka <strong>Pembagian</strong> adalah <strong>Pengurangan</strong> yang berulang, kita ambil contoh: <br>
                 $10\div2$<br>
@@ -136,20 +136,168 @@ const materialsData = [
     },
     {
         id: "arithmatic-2",
-        title: "Aritmatika Bilangan Pecahan",
+        title: "Operasi Bilangan Pecahan",
         category: "Aritmatika",
-        summary: "Aritmatika bilangan pecahan adalah cabang yang mempelajari cara mengoperasikan bilangan pecahan biasa.",
+        summary: "Operasi bilangan pecahan mempelajari cara mengoperasikan atau menyelesaikan masalah bilangan pecahan biasa.",
         content: String.raw`<div class="space-y-4">
                 <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Apa itu Bilangan Pecahan?</h3>
-                <p><strong>Bilangan Pecahan</strong> dalam Matematika adalah untuk menyatakan atau menulis suatu bilangan, angka, atau nilai yang tidak bulat(Contoh: $0,25$) dengan bentuk <strong>Perbandingan</strong>, contoh bilangan pecahan adalah sebagai berikut: <br>
-                $\frac{1}{2}$</p>`
+                <p><strong>Bilangan Pecahan</strong> dalam Matematika adalah untuk menyatakan atau menulis suatu bilangan, angka, atau nilai yang tidak bulat(Contoh: $0,25$) dengan bentuk <strong>Perbandingan</strong>($\frac{pembilang}{penyebut}$), seperti $\frac{1}{2}$ yang merupakan bentuk bilangan pecahan biasa dari bilangan pecahan desimal yaitu $0,5$, dan <strong>Operasi Bilangan Pecahan</strong> adalah materi yang mempelajari cara menambahkan, mengurangi, mengkalikan, dan membaagikan suatu bilangan pecahan.</p>
+                <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">A. Pertambahan Bilangan Pecahan.</h3>
+                <p><strong>Pertambahan Bilangan Pecahan</strong> tentu saja tidak sama caranya dengan pertambahan bilangan bulat biasa, rumus atau persamaan yang bisa menyelesaikan pertambahan bilangan pecahan adalah<br>
+                <br>$\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}$<br>
+                <br>
+                <strong>Q: Itu ada huruf yang disatukan tanpa ada operasinya, itu bagaimana?</strong><br>
+                <strong>A: </strong>Pasti sering kita menemukan huruf atau variable yang satukan tanpa ada simbol $+, -, \times, \div$, tapi jangan bingung, kalau ketemu huruf atau variable yang seperti itu, itu artinya variablenya dikali, contoh.. $ad$ maka $a\times d$.<br>
+                <br>
+                <strong>Q: Kenapa rumusnya bisa seperti itu? Bagaimana cara kerjanya?</strong><br>
+                <strong>A: </strong>Mungkin ada pertanyaan seperti itu, jadi sebelum kita ke contoh soal, mari kita pelajari dulu kenapa rumusnya bisa seperti itu ^^.<br>
+                Pada dasarnya, pecahan tidak bisa langsung dijumlahkan jika penyebutnya berbeda, hal ini karena penyebut menentukan ukuran pembagian atau satuan pecahan tersebut, dan jika langsung ditambahkan dalam kondisi nilai penyebut berbeda, maka tentunya hasil akhirnya akan berubah dari yang seharusnya.<br>
+                Maka yang harus kita lakukan pertama kali adalah menyamakan penyebutnya, dengan cara mengkalikan $b$ dan juga $d$.<br>
+                Namun jika penyebut diubah, maka pembilang juga harus diubah.<br>
+                Pada pecahan $\frac{a}{b}$, pembilang harus dikali dengan penyebut dari pecahan $\frac{c}{d}$, menjadi $ad$ agar hasilnya setara.<br>
+                Begitupun dengan pecahan $\frac{c}{d}$, pembilang harus dikali dengan penyebut dari pecahan $\frac{a}{b}$, menjadi $bc$ agar hasilnya setara.<br>
+                <br>
+                Itulah kenapa persamaannya seperti itu, lalu bagaimana cara mengerjakannya? Yuk kita ke contoh soal.</p>
+                <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                    <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                    <p class="text-sm">Pertanyaan:<br>
+                    $\frac{1}{2}+\frac{1}{4}$</p>
+                    <p class="text-sm mt-2 font-mono">
+                        Rumusnya adalah: <br>
+                        $\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}$<br>
+                        <br>
+                        Jika kita ingin menyamakan soal dengan persamaannya, kita harus mengganti variable a, b, c, dan d, dengan nilai-nilai atau angka-angkanya.<br>
+                        Jika kita lihat a berada di posisi 1, berarti $a=1$.<br>
+                        Jika kita lihat b berada di posisi 2, berarti $b=2$.<br>
+                        Jika kita lihat c berada di posisi 1, berarti $c=1$.<br>
+                        Jika kita lihat d berada di posisi 4, berarti $d=4$.<br>
+                        Kalau sudah tahu semua, maka kita hanya harus mengubah variable-variablenya menjadi nilai-nilainya, maka $\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}$ menjadi $\frac{1}{2}+\frac{1}{4}=\frac{1\times4+2\times1}{2\times4}$<br>
+                        <br>
+                        Nah selanjutnya kita hanya harus lanjut kerjakan deh, oh iya, ingat, di pembilangnya ada pertambahan dan juga perkalian, menurut hukum <strong>PEMDAS</strong>, perkalian dikerjakan terlebih dahulu, baru setelah itu kita kerjakan pertambahan, yuk kita kerjakan!<br>
+                        <br>
+                        $\frac{1}{2}+\frac{1}{4}$<br>
+                        $=\frac{1\times4+2\times1}{2\times4}$<br>
+                        $=\frac{4+2}{8}$<br>
+                        $=\frac{6}{8}$<br>
+                        <br>
+                        Nah jadi hasilnya adalah $\frac{6}{8}$, nah perlu diketahui hasil ini adalah hasil yang masih bisa disederhanakan, namun karena ini adalah materi <strong>Operasi Bilangan Pecahan</strong>, bukan <strong>Menyederhanakan Bilangan Pecahan</strong> ';v, jadi <strong>Abi</strong> rasa kali ini tidak perlu disederhanakan dulu.
+                    </p>
+                </div>
+                <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">B. Pengurangan Bilangan Pecahan.</h3>
+                <p><strong>Pengurangan Bilangan Pecahan</strong> ini rumusnya sama persis juga seperti <strong>Pertambahan Bilangan Pecahan</strong>, dan cara kerja rumusnya juga sama, yaitu menyamakan terlebih dahulu <strong>penyebut</strong>nya(Untuk penjelasan lebih lengkap, bisa dibaca di <strong>Pertambahan Bilangan Pecahan</strong>).<br>
+                Nah jadi rumus <strong>Pengurangan Bilangan Pecahan</strong> adalah<br>
+                <br>$\frac{a}{b}-\frac{c}{d}=\frac{ad-bc}{bd}$<br>
+                <br>
+                <strong>Q: Itu ada huruf yang disatukan tanpa ada operasinya, itu bagaimana?</strong><br>
+                <strong>A: </strong>Pasti sering kita menemukan huruf atau variable yang satukan tanpa ada simbol $+, -, \times, \div$, tapi jangan bingung, kalau ketemu huruf atau variable yang seperti itu, itu artinya variablenya dikali, contoh.. $ad$ maka $a\times d$.<br>
+                <br>
+                Mirip bukan? Bedanya <strong>Pertambahan Bilangan Pecahan</strong> ditambah($+$) namun <strong>Pengurangan Blangan Pecahan</strong> ini dikurang($-$), kalau begitu yuk kita langsung ke contoh soal!</p>
+                <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                    <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                    <p class="text-sm">Pertanyaan:<br>
+                    $\frac{1}{2}-\frac{1}{4}$</p>
+                    <p class="text-sm mt-2 font-mono">
+                        Rumusnya adalah: <br>
+                        $\frac{a}{b}-\frac{c}{d}=\frac{ad-bc}{bd}$<br>
+                        <br>
+                        Jika kita ingin menyamakan soal dengan persamaannya, kita harus mengganti variable a, b, c, dan d, dengan nilai-nilai atau angka-angkanya.<br>
+                        Jika kita lihat a berada di posisi 1, berarti $a=1$.<br>
+                        Jika kita lihat b berada di posisi 2, berarti $b=2$.<br>
+                        Jika kita lihat c berada di posisi 1, berarti $c=1$.<br>
+                        Jika kita lihat d berada di posisi 4, berarti $d=4$.<br>
+                        Kalau sudah tahu semua, maka kita hanya harus mengubah variable-variablenya menjadi nilai-nilainya, maka $\frac{a}{b}-\frac{c}{d}=\frac{ad-bc}{bd}$ menjadi $\frac{1}{2}-\frac{1}{4}=\frac{1\times4-2\times1}{2\times4}$<br>
+                        <br>
+                        Nah selanjutnya kita hanya harus lanjut kerjakan deh, oh iya, ingat, di pembilangnya ada pengurangan dan juga perkalian, menurut hukum <strong>PEMDAS</strong>, perkalian dikerjakan terlebih dahulu, baru setelah itu kita kerjakan pengurangan, yuk kita kerjakan!<br>
+                        <br>
+                        $\frac{1}{2}-\frac{1}{4}$<br>
+                        $=\frac{1\times4-2\times1}{2\times4}$<br>
+                        $=\frac{4-2}{8}$<br>
+                        $=\frac{2}{8}$<br>
+                        <br>
+                        Nah jadi hasilnya adalah $\frac{2}{8}$, nah sekali lagi perlu diketahui hasil ini adalah hasil yang masih bisa disederhanakan, namun karena ini adalah materi <strong>Operasi Bilangan Pecahan</strong>, bukan <strong>Menyederhanakan Bilangan Pecahan</strong> ';v, jadi <strong>Abi</strong> rasa kali ini tidak perlu disederhanakan dulu.
+                    </p>
+                </div>
+                <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">C. Perkalian Bilangan Pecahan.</h3>
+                <p><strong>Perkalian Bilangan Pecahan</strong> tentunya berbeda dengan <strong>Pertambahan Bilangan Pecahan</strong> maupun <strong>Pengurangan Bilangan Pecahan</strong>, namun caranya lebih mudah, yaitu dengan mengkalikan kedua pembilangnya, lalu mengkalikan juga kedua penyebutnya, jadi rumusnya<br><br>
+                $\frac{a}{b}\times\frac{c}{d}=\frac{ac}{bd}$<br>
+                <br>
+                <strong>Q: Itu ada huruf yang disatukan tanpa ada operasinya, itu bagaimana?</strong><br>
+                <strong>A: </strong>Pasti sering kita menemukan huruf atau variable yang satukan tanpa ada simbol $+, -, \times, \div$, tapi jangan bingung, kalau ketemu huruf atau variable yang seperti itu, itu artinya variablenya dikali, contoh.. $ad$ maka $a\times d$.<br>
+                <br>
+                Dan mungkin bingung ya, kenapa perkalian tidak menggunakan rumus yang rumit, sementara pertambahan dan pengurangan harus menggunakan rumus yang bisa dibilang rumit dan malah mengubah banyak posisi variablenya, alasan utamanya karena...<br>
+                <strong>Perkalian</strong> adalah operasi skala, atau perbandingan, jadi kita tidak harus menyamakan penyebutnya agar hasilnya setara, kita cukup mengkalikan pembilang dan penyebutnya saja, itu sudah setara, berbeda dengan <strong>Pertambahan</strong> dan <strong>Pengurangan</strong> yang merupakan tindakan atau operasi menggabungkan atau mengurangi jumlah benda dengan satuan yang sama, maka kita harus menyamakan dulu penyebutnya untuk menghasilkan nilai yang seharusnya.<br>
+                <br>
+                Nah aku yakin <strong>Aru</strong> pasti sudah tau, jadi <strong>Abi</strong> rasa... Yuk kita ke contoh soalnya!</p>
+                <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                    <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                    <p class="text-sm">Pertanyaan:<br>
+                    $\frac{1}{2}\times\frac{1}{4}$</p>
+                    <p class="text-sm mt-2 font-mono">
+                        Rumusnya adalah: <br>
+                        $\frac{a}{b}\times\frac{c}{d}=\frac{ac}{bd}$<br>
+                        <br>
+                        Jika kita ingin menyamakan soal dengan persamaannya, kita harus mengganti variable a, b, c, dan d, dengan nilai-nilai atau angka-angkanya.<br>
+                        Jika kita lihat a berada di posisi 1, berarti $a=1$.<br>
+                        Jika kita lihat b berada di posisi 2, berarti $b=2$.<br>
+                        Jika kita lihat c berada di posisi 1, berarti $c=1$.<br>
+                        Jika kita lihat d berada di posisi 4, berarti $d=4$.<br>
+                        Kalau sudah tahu semua, maka kita hanya harus mengubah variable-variablenya menjadi nilai-nilainya, maka $\frac{a}{b}\times\frac{c}{d}=\frac{ac}{bd}$ menjadi $\frac{1}{2}\times\frac{1}{4}=\frac{1\times1}{2\times4}$<br>
+                        <br>
+                        Nah selanjutnya kita hanya harus lanjut kerjakan deh.
+                        <br>
+                        $\frac{1}{2}\times\frac{1}{4}$<br>
+                        $=\frac{1\times1}{2\times4}$<br>
+                        $=\frac{1}{8}$<br>
+                        <br>
+                        Nah jadi hasilnya adalah $\frac{1}{8}$.
+                    </p>
+                </div>
+                <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">D. Pembagian Bilangan Pecahan.</h3>
+                <p><strong>Pembagian Bilangan Pecahan</strong> tentunya juga berbeda dengan <strong>Pertambahan Bilangan Pecahan</strong> maupun <strong>Pengurangan Bilangan Pecahan</strong>, namun juga sama seperti <strong>Perkalian Bilangan Pecahan</strong> yaitu lebih mudah dari pertambahan maupun pengurangan bilangan pecahan, yuk lihat rumusnya!<br><br>
+                $\frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc}$<br>
+                <br>
+                <strong>Q: Itu ada huruf yang disatukan tanpa ada operasinya, itu bagaimana?</strong><br>
+                <strong>A: </strong>Pasti sering kita menemukan huruf atau variable yang satukan tanpa ada simbol $+, -, \times, \div$, tapi jangan bingung, kalau ketemu huruf atau variable yang seperti itu, itu artinya variablenya dikali, contoh.. $ad$ maka $a\times d$.<br>
+                <br>
+                <strong>Q: Oh hampir mirip sama perkalian bilangan pecahan ya? Tapi bedanya yang bilangan pecahan ke-2 pembilang dan penyebutnya ditukar posisi dan $\div$ menjadi $\times$?</strong><br>
+                <strong>A: </strong>Betul dan TEPAT SEKALI!<br>
+                <br>
+                Dan mungkin bingung ya, kenapa pembagian tidak menggunakan rumus yang rumit, sementara pertambahan dan pengurangan harus menggunakan rumus yang bisa dibilang rumit dan malah mengubah banyak posisi variablenya, alasan utamanya karena...<br>
+                <strong>Pembagian</strong> adalah operasi skala, atau perbandingan, jadi kita tidak harus menyamakan penyebutnya agar hasilnya setara, kita cukup mengkalikan pembilang dengan penyebut, lalu penyebut dengan pembilangnya saja, itu sudah setara, berbeda dengan <strong>Pertambahan</strong> dan <strong>Pengurangan</strong> yang merupakan tindakan atau operasi menggabungkan atau mengurangi jumlah benda dengan satuan yang sama, maka kita harus menyamakan dulu penyebutnya untuk menghasilkan nilai yang seharusnya.<br>
+                <br>
+                Nah aku yakin <strong>Aru</strong> pasti sudah tau, jadi <strong>Abi</strong> rasa... Yuk kita ke contoh soalnya!</p>
+                <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                    <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                    <p class="text-sm">Pertanyaan:<br>
+                    $\frac{1}{2}\div\frac{1}{4}$</p>
+                    <p class="text-sm mt-2 font-mono">
+                        Rumusnya adalah: <br>
+                        $\frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc}$<br>
+                        <br>
+                        Jika kita ingin menyamakan soal dengan persamaannya, kita harus mengganti variable a, b, c, dan d, dengan nilai-nilai atau angka-angkanya.<br>
+                        Jika kita lihat a berada di posisi 1, berarti $a=1$.<br>
+                        Jika kita lihat b berada di posisi 2, berarti $b=2$.<br>
+                        Jika kita lihat c berada di posisi 1, berarti $c=1$.<br>
+                        Jika kita lihat d berada di posisi 4, berarti $d=4$.<br>
+                        Kalau sudah tahu semua, maka kita hanya harus mengubah variable-variablenya menjadi nilai-nilainya, maka $\frac{a}{b}\div\frac{c}{d}=\frac{ad}{bc}$ menjadi $\frac{1}{2}\div\frac{1}{4}=\frac{1\times4}{2\times1}$<br>
+                        <br>
+                        Nah selanjutnya kita hanya harus lanjut kerjakan deh.
+                        <br>
+                        $\frac{1}{2}\div\frac{4}{1}$<br>
+                        $=\frac{1\times4}{2\times1}$<br>
+                        $=\frac{4}{2}$<br>
+                        <br>
+                        Nah jadi hasilnya adalah $\frac{4}{2}$, ini bisa kita sederhanakan dan bisa juga kita jadikan bilangan bulat, namun sekali lagi karena ini adalah materi <strong>Operasi Bilangan Pecahan</strong>, bukan <strong>Menyederhanakan Bilangan Pecahan</strong> ';v, jadi <strong>Abi</strong> rasa kali ini tidak perlu disederhanakan atau dijadikan bilangan bulat dulu.
+                    </p>
+                </div>
+            </div>`
     },
 ];
 
 let selectedGrade = 'Semua';
 let selectedCategory = 'Semua';
 let searchQuery = '';
-const categories = ['Semua', 'Logika', 'Aritmatika'];
+const categories = ['Semua', 'Umum', 'Aritmatika'];
 
 function initTheme() {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
