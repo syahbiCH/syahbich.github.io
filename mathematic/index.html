@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematika itu menyenangkan bukan?</title>
+    <link rel="icon" type="image/x-icon" href="images/syahbi_CH.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased">
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                        <i class="fa-solid font-bold text-xl">∑</i>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" title="Ubah Tema Light/Dark">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-b from-blue-50/50 via-white to-transparent dark:from-slate-800/40 dark:via-slate-900 dark:to-transparent py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                Halo <span class="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">Aru</span>! 
+            </h1>
+            <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                Hai! Kembali lagi bersama ku <strong>Syahbi</strong>, website ini digunakan untuk membaca dan memahami beberapa materi Matematika, ada beberapa cabang Matematika yang telah ku masukan, namun ada juga yang belum, insya'allah website ini akan selalu diupdate ya <strong>Aru</strong> ^^.
+            </p>
+            <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                Developed by <strong>Syahbi Ramadani</strong>
+            </p>
+            <div class="mt-8 relative max-w-xl mx-auto">
+                <div class="relative">
+                    <input type="text" id="searchInput" oninput="filterMaterials()" placeholder="Cari nama materi atau topik Matematika" 
+                        class="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-1 w-full">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="gradeFilterContainer"></div>
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="categoryFilterContainer"></div>
+        </div>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-slate-800 dark:text-white" id="sectionTitle">Daftar Materi atau Cabang Matematika</h2>
+            <span class="text-sm font-medium text-slate-500 dark:text-slate-400" id="itemCount">Menampilkan 0 Materi</span>
+        </div>
+        <div id="materialGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="emptyState" class="hidden text-center py-16 bg-white dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 mt-4">
+            <div class="w-16 h-16 mx-auto mb-4 text-slate-400 flex items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-full">
+                <i class="fa-solid fa-folder-open text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200">Materi Tidak Ditemukan</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Coba gunakan kata kunci pencarian lain atau ganti filter kategori.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl text-sm transition-all shadow-md">
+                Reset Filter & Pencarian
+            </button>
+        </div>
+    </main>
+
+    <div id="readerModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden transform transition-all scale-95 opacity-0" id="modalContainer">
+            <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-start bg-slate-50/50 dark:bg-slate-800/50 sticky top-0 z-10 backdrop-blur-md">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span id="modalGradeBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">Kelas</span>
+                        <span id="modalCategoryBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">Kategori</span>
+                    </div>
+                    <h2 id="modalTitle" class="text-2xl font-bold text-slate-900 dark:text-white">Judul Materi</h2>
+                </div>
+                <button onclick="closeModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-6 text-slate-700 dark:text-slate-200 leading-relaxed" id="modalBody">
+            </div>
+            <div class="p-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 flex justify-end space-x-3">
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium text-sm transition-all">
+                    Tutup Reader
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
