@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematika</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100,100,100,0.3);
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased">
+
+    <!-- NAVBAR & HEADER -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                        <i class="fa-solid font-bold text-xl">∑</i>
+                    </div>
+                </div>
+
+                <!-- Right Action: Dark Mode Switcher -->
+                <div class="flex items-center space-x-4">
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" title="Ubah Tema Light/Dark">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO & SEARCH SECTION -->
+    <section class="bg-gradient-to-b from-blue-50/50 via-white to-transparent dark:from-slate-800/40 dark:via-slate-900 dark:to-transparent py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                Halo <span class="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">Aru</span>! 
+            </h1>
+            <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                Hai! Kembali lagi bersama ku <strong>Syahbi</strong>, website ini digunakan untuk membaca dan memahami beberapa materi Matematika, ada beberapa cabang Matematika yang telah ku masukan, namun ada juga yang belum, insya'allah website ini akan selalu diupdate ya <strong>Aru</strong> ^^.
+            </p>
+            <p class="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+                Developed by <strong>Syahbi Ramadani</strong>
+            </p>
+
+            <!-- Search Bar -->
+            <div class="mt-8 relative max-w-xl mx-auto">
+                <div class="relative">
+                    <input type="text" id="searchInput" oninput="filterMaterials()" placeholder="Cari nama materi atau topik Matematika" 
+                        class="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-1 w-full">
+        
+        <!-- Category & Grade Filters -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
+            
+            <!-- Class Grade Filters -->
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="gradeFilterContainer">
+                <!-- Class filter buttons will be rendered dynamically -->
+            </div>
+
+            <!-- Subject Category Filters -->
+            <div class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="categoryFilterContainer">
+                <!-- Category buttons will be rendered dynamically -->
+            </div>
+
+        </div>
+
+        <!-- Results Counter -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold text-slate-800 dark:text-white" id="sectionTitle">Daftar Materi atau Cabang Matematika</h2>
+            <span class="text-sm font-medium text-slate-500 dark:text-slate-400" id="itemCount">Menampilkan 0 Materi</span>
+        </div>
+
+        <!-- Cards Grid Container -->
+        <div id="materialGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards will be populated dynamically via JavaScript -->
+        </div>
+
+        <!-- Empty State (Shown when search/filter has no match) -->
+        <div id="emptyState" class="hidden text-center py-16 bg-white dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 mt-4">
+            <div class="w-16 h-16 mx-auto mb-4 text-slate-400 flex items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-full">
+                <i class="fa-solid fa-folder-open text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200">Materi Tidak Ditemukan</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Coba gunakan kata kunci pencarian lain atau ganti filter kategori.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl text-sm transition-all shadow-md">
+                Reset Filter & Pencarian
+            </button>
+        </div>
+
+    </main>
+
+    <!-- READER MODAL VIEW -->
+    <div id="readerModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300">
+        
+        <!-- Modal Card -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden transform transition-all scale-95 opacity-0" id="modalContainer">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-start bg-slate-50/50 dark:bg-slate-800/50 sticky top-0 z-10 backdrop-blur-md">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span id="modalGradeBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">Kelas</span>
+                        <span id="modalCategoryBadge" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">Kategori</span>
+                    </div>
+                    <h2 id="modalTitle" class="text-2xl font-bold text-slate-900 dark:text-white">Judul Materi</h2>
+                </div>
+                <button onclick="closeModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-all">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Scroll Area -->
+            <div class="p-6 overflow-y-auto space-y-6 text-slate-700 dark:text-slate-200 leading-relaxed" id="modalBody">
+                <!-- Dynamic Content Loaded via JavaScript -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 flex justify-end space-x-3">
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium text-sm transition-all">
+                    Tutup Reader
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* 
+         ===================================================================
+         * DATA MATERI MATEMATIKA (DAPAT DITAMBAH / DIEDIT SESUAI KEBUTUHAN)
+         ===================================================================
+         * Pengguna bisa dengan mudah menambahkan atau mengganti objek materi 
+         * di bawah ini sesuai dengan silabus matematika yang diinginkan.
+        */
+        const materialsData = [
+            {
+                id: "logic-1",
+                title: "PEMDAS (Penting)",
+                category: "Logika",
+                summary: "Aturan dasar Matematika terkait urutan operasi bilangan Matematika",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Apa itu PEMDAS?</h3>
+                        <p>PEMDAS atau kepanjangannya adalah Parentheses Exponents Multiplication Division Addition and Substraction merupakan aturan cara kita mengerjakan suatu operasi atau bilangan Matematika sesuai urutan PEMDAS, berikut adalah urutannya.</p>
+                        
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-blue-500 font-mono text-sm">
+                            <p>1. Parentheses : () [] {}</p>
+                            <p>2. Exponents : xʸ</p>
+                            <p>3. Multiplication, Division : × ÷</p>
+                            <p>4. Addition, Substraction : + -</p>
+                        </div>
+
+                        <p>Jadi ketika kita menghadapi sebuah pertanyaan Matematika, kita harus mengerjakannya sesuai dengan urutan pada PEMDAS, kita lihat dulu apakah ada Parentheses(1? Jika ada kita kerjakan Parenthesesnya terlebih dahulu, apakah ada Exponents(2)? Jika ada kita kerjakan Exponents(Bilangan Berpangkat)nya terlebih dahulu, apakah ada Multiplication atau Division(3)? Jika ada maka kita kerjakan Multiplication(Perkalian) dan Division(Pembagian)nya terlebih dahulu, apakah ada Addition and Substraction(4)? Jika iya maka kita kerjakan Addition(Pertambahan) and Substraction(Pengurangan)nya.</p>
+
+                        <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                            <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                            <p class="text-sm">Pertanyaan: <strong>34 + 95 - (9 + 53) + 79 × 3 ÷ 3 + 7² - 53</strong></p>
+                            <p class="text-sm mt-2 font-mono">
+                                Di dalam soal ada Parenthesesnya, yaitu <strong>(9 + 53)</strong>, maka kita kerjakan Parentheses tersebut<br>
+                                9 + 53 = 62<br>
+                                <br>
+                                Maka <strong>(9 + 53)</strong> di dalam soal kita ubah menjadi <strong>62</strong>.<br>
+                                <strong>34 + 95 - 62 + 79 × 3 ÷ 3 + 7² - 53</strong><br>
+                                <br>
+                                
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "arithmatic-1",
+                title: "Aritmatika Dasar",
+                category: "Aritmatika",
+                summary: "Cabang Matematika paling fundamental, mempelajari tentang pertambahan, pengurangan, pembagian, dan perkalian",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Pengertian SPLDV</h3>
+                        <p>Sistem Persamaan Linear Dua Variabel (SPLDV) adalah kumpulan dari dua atau lebih persamaan linear yang memiliki dua variabel berbentuk pangkat satu.</p>
+                        
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-blue-500 font-mono text-sm">
+                            <p class="font-bold mb-1">Bentuk Umum:</p>
+                            <p>a₁x + b₁y = c₁</p>
+                            <p>a₂x + b₂y = c₂</p>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">2. Metode Penyelesaian</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Metode Substitusi:</strong> Mengganti satu variabel dengan variabel lain dari persamaan berbeda.</li>
+                            <li><strong>Metode Eliminasi:</strong> Menghilangkan salah satu variabel dengan menyamakan koefisiennya.</li>
+                            <li><strong>Metode Campuran:</strong> Menggabungkan metode eliminasi dan substitusi.</li>
+                        </ul>
+
+                        <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                            <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                            <p class="text-sm">Selesaikan sistem persamaan: <strong>x + y = 5</strong> dan <strong>x - y = 1</strong>.</p>
+                            <p class="text-sm mt-2 font-mono">
+                                (Jumlahkan kedua persamaan)<br>
+                                (x + y) + (x - y) = 5 + 1<br>
+                                2x = 6 ⇒ <strong>x = 3</strong><br><br>
+                                Substitusi x = 3 ke x + y = 5:<br>
+                                3 + y = 5 ⇒ <strong>y = 2</strong>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "spldv-10",
+                title: "Sistem Persamaan Linear Dua Variabel (SPLDV)",
+                category: "Aljabar",
+                readTime: "8 Menit",
+                summary: "Memahami penyelesaian dua persamaan linear dengan dua variabel menggunakan metode eliminasi, substitusi, dan gabungan.",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Pengertian SPLDV</h3>
+                        <p>Sistem Persamaan Linear Dua Variabel (SPLDV) adalah kumpulan dari dua atau lebih persamaan linear yang memiliki dua variabel berbentuk pangkat satu.</p>
+                        
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-blue-500 font-mono text-sm">
+                            <p class="font-bold mb-1">Bentuk Umum:</p>
+                            <p>a₁x + b₁y = c₁</p>
+                            <p>a₂x + b₂y = c₂</p>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">2. Metode Penyelesaian</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Metode Substitusi:</strong> Mengganti satu variabel dengan variabel lain dari persamaan berbeda.</li>
+                            <li><strong>Metode Eliminasi:</strong> Menghilangkan salah satu variabel dengan menyamakan koefisiennya.</li>
+                            <li><strong>Metode Campuran:</strong> Menggabungkan metode eliminasi dan substitusi.</li>
+                        </ul>
+
+                        <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                            <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal & Pembahasan</h4>
+                            <p class="text-sm">Selesaikan sistem persamaan: <strong>x + y = 5</strong> dan <strong>x - y = 1</strong>.</p>
+                            <p class="text-sm mt-2 font-mono">
+                                (Jumlahkan kedua persamaan)<br>
+                                (x + y) + (x - y) = 5 + 1<br>
+                                2x = 6 ⇒ <strong>x = 3</strong><br><br>
+                                Substitusi x = 3 ke x + y = 5:<br>
+                                3 + y = 5 ⇒ <strong>y = 2</strong>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "turunan-11",
+                title: "Turunan Fungsi Aljabar (Kalkulus Dasar)",
+                category: "Kalkulus",
+                readTime: "10 Menit",
+                summary: "Mempelajari konsep laju perubahan nilai fungsi aljabar, rumus turunan dasar n-pangkat, dan sifat-sifat utamanya.",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Konsep Dasar Turunan</h3>
+                        <p>Turunan fungsi f(x) terhadap x didefinisikan sebagai laju perubahan nilai fungsi terhadap variabelnya pada suatu titik.</p>
+                        
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-blue-500 font-mono text-sm">
+                            <p class="font-bold mb-1">Rumus Utama Turunan:</p>
+                            <p>Jika f(x) = a · xⁿ , maka:</p>
+                            <p class="text-blue-600 dark:text-blue-400 font-bold text-base">f'(x) = a · n · xⁿ⁻¹</p>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">2. Sifat-Sifat Turunan</h3>
+                        <ul class="list-disc pl-5 space-y-1 text-sm font-mono">
+                            <li>f(x) = c ⇒ f'(x) = 0</li>
+                            <li>f(x) = u(x) ± v(x) ⇒ f'(x) = u'(x) ± v'(x)</li>
+                            <li>f(x) = u(x) · v(x) ⇒ f'(x) = u'v + uv'</li>
+                        </ul>
+
+                        <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                            <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal</h4>
+                            <p class="text-sm">Tentukan turunan pertama dari <strong>f(x) = 3x⁴ + 2x² - 5</strong>.</p>
+                            <p class="text-sm mt-2 font-mono">
+                                f'(x) = (3 · 4)x⁴⁻¹ + (2 · 2)x²⁻¹ - 0<br>
+                                <strong>f'(x) = 12x³ + 4x</strong>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "matriks-11",
+                title: "Matriks & Operasi Determinan",
+                category: "Aljabar",
+                difficulty: "Mudah",
+                readTime: "7 Menit",
+                summary: "Pengenalan susunan bilangan berbentuk matriks, operasi penjumlahan, perkalian matriks, dan pencarian determinan.",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Pengertian Matriks</h3>
+                        <p>Matriks adalah sekumpulan bilangan yang diatur dalam baris dan kolom serta ditempatkan di dalam tanda kurung.</p>
+                        
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-blue-500 font-mono text-sm">
+                            <p class="font-bold mb-1">Determinan Matriks Ordo 2x2:</p>
+                            <p>A = [ a  b ]</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;[ c  d ]</p>
+                            <p class="mt-2 text-blue-600 dark:text-blue-400 font-bold">Det(A) = (a · d) - (b · c)</p>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl">
+                            <h4 class="font-bold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-2"></i>Contoh Soal Determinan</h4>
+                            <p class="text-sm">Hitung determinan matriks B = [4, 2 ; 3, 5]!</p>
+                            <p class="text-sm mt-2 font-mono">
+                                Det(B) = (4 · 5) - (2 · 3)<br>
+                                Det(B) = 20 - 6 = <strong>14</strong>
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "trigonometri-10",
+                title: "Trigonometri Dasar & Perbandingan Sudut",
+                category: "Geometri",
+                difficulty: "Sedang",
+                readTime: "9 Menit",
+                summary: "Memahami konsep sinus, cosinus, dan tangen pada segitiga siku-siku serta rumus identitas dasar trigonometri.",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Perbandingan Trigonometri</h3>
+                        <p>Pada segitiga siku-siku dengan sudut θ:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center font-mono text-sm">
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                <strong>Sin θ</strong> = Depan / Miring
+                            </div>
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                <strong>Cos θ</strong> = Samping / Miring
+                            </div>
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                <strong>Tan θ</strong> = Depan / Samping
+                            </div>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">2. Identitas Utama</h3>
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl font-mono text-sm">
+                            <p class="text-blue-600 dark:text-blue-400 font-bold">sin²(θ) + cos²(θ) = 1</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "integral-12",
+                title: "Integral Tentu & Tak Tentu",
+                category: "Kalkulus",
+                difficulty: "Sulit",
+                readTime: "12 Menit",
+                summary: "Memahami konsep kebalikan dari turunan (antiturunan) dan perhitungan luas daerah di bawah kurva fungsi.",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Integral Tak Tentu</h3>
+                        <p>Integral tak tentu menyatakan antiturunan dari suatu fungsi yang menghasilkan konstanta sembarang C.</p>
+                        
+                        <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border-l-4 border-blue-500 font-mono text-sm">
+                            <p class="font-bold mb-1">Rumus Integral Dasar:</p>
+                            <p class="text-blue-600 dark:text-blue-400 font-bold text-base">∫ xⁿ dx = [1 / (n + 1)] xⁿ⁺¹ + C</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "peluang-12",
+                title: "Peluang, Permutasi & Kombinasi",
+                category: "Statistika",
+                difficulty: "Sedang",
+                readTime: "8 Menit",
+                summary: "Menghitung kemungkinan kejadian, kaidah pencacahan, serta perbedaan penggunaan permutasi dan kombinasi.",
+                content: `
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">1. Perbedaan Permutasi & Kombinasi</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                            <div class="p-4 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-1">Permutasi (Memperhatikan Urutan)</h4>
+                                <p class="font-mono text-xs mt-2">ⁿPᵣ = n! / (n - r)!</p>
+                            </div>
+                            <div class="p-4 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">Kombinasi (Abaikan Urutan)</h4>
+                                <p class="font-mono text-xs mt-2">ⁿCᵣ = n! / [r! · (n - r)!]</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // State Filter Management
+        let selectedGrade = 'Semua';
+        let selectedCategory = 'Semua';
+        let searchQuery = '';
+        const categories = ['Semua', 'Logika', 'Aritmatika', 'Aljabar', 'Kalkulus', 'Geometri', 'Statistika'];
+
+        // Dark Mode Logic
+        function initTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                updateThemeIcon(true);
+            } else {
+                document.documentElement.classList.remove('dark');
+                updateThemeIcon(false);
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            updateThemeIcon(isDark);
+        }
+
+        function updateThemeIcon(isDark) {
+            const icon = document.getElementById('themeIcon');
+            if (isDark) {
+                icon.className = 'fa-solid fa-sun text-yellow-400 text-lg';
+            } else {
+                icon.className = 'fa-solid fa-moon text-slate-600 text-lg';
+            }
+        }
+
+        // Render Grade & Category Buttons
+        function renderFilters() {
+            const categoryContainer = document.getElementById('categoryFilterContainer');
+            categoryContainer.innerHTML = categories.map(cat => `
+                <button onclick="setCategoryFilter('${cat}')" class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+                    selectedCategory === cat 
+                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/20' 
+                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700'
+                }">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        // Render Material Cards
+        function renderCards() {
+            const grid = document.getElementById('materialGrid');
+            const emptyState = document.getElementById('emptyState');
+            const itemCount = document.getElementById('itemCount');
+
+            // Filter logic
+            const filtered = materialsData.filter(item => {
+                const matchGrade = selectedGrade === 'Semua' || item.grade === selectedGrade;
+                const matchCat = selectedCategory === 'Semua' || item.category === selectedCategory;
+                const matchSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                    item.summary.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchGrade && matchCat && matchSearch;
+            });
+
+            itemCount.textContent = `Menampilkan ${filtered.length} Materi`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => {
+
+                return `
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <!-- Header Badges -->
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">
+                                    ${item.category}
+                                </span>
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
+                                ${item.title}
+                            </h3>
+
+                            <!-- Summary -->
+                            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-4">
+                                ${item.summary}
+                            </p>
+                        </div>
+
+                        <div>
+                            <!-- Info Footer -->
+                            <div class="flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 pt-3 border-t border-slate-100 dark:border-slate-700/50 mb-4">
+                            </div>
+
+                            <!-- Read Button -->
+                            <button onclick="openModal('${item.id}')" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-700/50 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white text-slate-700 dark:text-slate-200 font-medium text-sm transition-all duration-200 flex items-center justify-center space-x-2">
+                                <span>Pelajari Materi</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function setGradeFilter(grade) {
+            selectedGrade = grade;
+            renderFilters();
+            renderCards();
+        }
+
+        function setCategoryFilter(category) {
+            selectedCategory = category;
+            renderFilters();
+            renderCards();
+        }
+
+        function filterMaterials() {
+            const input = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            searchQuery = input.value;
+            
+            if (searchQuery.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderCards();
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            searchQuery = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            renderCards();
+        }
+
+        function resetFilters() {
+            selectedGrade = 'Semua';
+            selectedCategory = 'Semua';
+            clearSearch();
+            renderFilters();
+            renderCards();
+        }
+
+        // Modal Reader View Logic
+        function openModal(id) {
+            const item = materialsData.find(m => m.id === id);
+            if (!item) return;
+
+            document.getElementById('modalTitle').textContent = item.title;
+            document.getElementById('modalGradeBadge').textContent = item.grade;
+            document.getElementById('modalCategoryBadge').textContent = item.category;
+            document.getElementById('modalBody').innerHTML = item.content;
+
+            const modal = document.getElementById('readerModal');
+            const container = document.getElementById('modalContainer');
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // prevent background scrolling
+
+            setTimeout(() => {
+                container.classList.remove('scale-95', 'opacity-0');
+                container.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('readerModal');
+            const container = document.getElementById('modalContainer');
+
+            container.classList.remove('scale-100', 'opacity-100');
+            container.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 200);
+        }
+
+        // Close Modal when clicking backdrop
+        document.getElementById('readerModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Initialize App
+        window.onload = function() {
+            initTheme();
+            renderFilters();
+            renderCards();
+        }
+    </script>
+</body>
+</html>
