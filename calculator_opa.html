@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+    rel="icon"
+    type="image/png"
+    href="https://i.imgur.com/oaXD7l3.png"
+/>
+<title>Officer Performance Assessment</title>
+<style>
+body {
+  background: #020617;
+  color: #e0f2fe;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56,189,248,0.8);
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(56,189,248,0.2);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  background: #0f172a;
+  border: 1px solid #38bdf8;
+  color: white;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(56,189,248,0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.header-card {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+/* override posisi button supaya ikut card */
+.header-card .back-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+}
+
+.header-card h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+/* --- BUTTON BACK OPTIMIZED --- */
+.back-btn {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(56,189,248,0.25);
+  border-radius: 8px;
+
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  z-index: 999;
+
+  transition: all 0.25s ease;
+}
+
+/* gambar di dalam button */
+.back-btn img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* hover effect neon */
+.back-btn:hover {
+  transform: translateX(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56,189,248,0.5);
+  background: rgba(56,189,248,0.08);
+}
+
+/* --- TOGGLE MODE --- */
+.mode-switch {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 32px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(56,189,248,0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  backdrop-filter: blur(6px);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  top: 3px;
+  background: #38bdf8;
+  border-radius: 50%;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(56,189,248,0.8);
+}
+
+input:checked + .slider::before {
+  transform: translateX(28px);
+}
+
+.mode-label {
+  font-size: 14px;
+  color: #7dd3fc;
+  text-shadow: 0 0 8px rgba(56,189,248,0.6);
+}
+
+footer {
+ margin-top: 45px;
+ font-size: 0.8rem;
+ color: #64748b;
+ text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card header-card">
+    
+    <a href="https://sapd.faizalrizqullah.my.id/" class="back-btn" aria-label="Kembali">
+      <img src="https://i.imgur.com/oYSuMjH.png" alt="Back">
+    </a>
+
+    <h1>Officer Performance Assessment</h1>
+        <div class="mode-switch">
+          <label class="switch">
+            <input type="checkbox" id="modeToggle" onchange="toggleMode()">
+            <span class="slider"></span>
+          </label>
+          <div class="mode-label" id="modeLabel">
+            Current OPA for PO-2 / PO-3
+          </div>
+        </div>
+  </div>
+
+  <div class="card">
+    <h3>Duty Hours (Menit per Minggu)</h3>
+    <input type="number" class="duty" placeholder="Minggu 1">
+    <input type="number" class="duty" placeholder="Minggu 2">
+    <input type="number" class="duty" placeholder="Minggu 3">
+    <input type="number" class="duty" placeholder="Minggu 4">
+    <input type="number" class="duty" placeholder="Minggu 5 harap input jika dalam 1 bulan ada 5 week (opsional)">
+  </div>
+
+ <div class="card">
+  <h3>Field Activity Report (Point per Minggu)</h3>
+  <input type="number" class="far" min="1" max="5" placeholder="Minggu 1">
+  <input type="number" class="far" min="1" max="5" placeholder="Minggu 2">
+  <input type="number" class="far" min="1" max="5" placeholder="Minggu 3">
+  <input type="number" class="far" min="1" max="5" placeholder="Minggu 4">
+  <input type="number" class="far" min="1" max="5" placeholder="Minggu 5 harap input jika dalam 1 bulan ada 5 week (opsional)">
+
+  <div style="margin-top:15px; font-size:14px; color:#555;">
+    <strong>Catatan Penilaian FAR:</strong><br>
+    5 Point → Sabtu<br>
+    4 Point → Minggu (00:00–12:00)<br>
+    3 Point → Minggu (12:00–24:00)<br>
+    2 Point → Senin<br>
+    1 Point → Selasa<br>
+    0 Point → Tidak submit / lewat dari Selasa
+  </div>
+ </div>
+
+  <div class="card">
+    <label>Incident Report (jumlah post)</label>
+    <input type="number" id="incident">
+  </div>
+
+  <div class="card">
+    <label>Officer Activity (jumlah warrant/vehicle)</label>
+    <input type="number" id="activity">
+  </div>
+
+  <div class="card" id="divisionCard">
+    <label>Division Activity (point)</label>
+    <input type="number" id="division" min="1" max="5">
+  </div>
+
+  <div class="card">
+    <label>Ticket Record (jumlah ticket)</label>
+    <input type="number" id="ticket">
+  </div>
+
+  <button onclick="calculate()">Hitung Assessment</button>
+
+  <div class="result" id="result"></div>
+    <footer>
+      © 2026 - Developed by Faizalrizqullah
+    </footer>
+</div>
+
+<script>
+function getDutyPoint(val) {
+  if (val >= 901) return 5;
+  if (val >= 701) return 4;
+  if (val >= 401) return 3;
+  if (val >= 341) return 2;
+  return 1;
+}
+
+function getIncidentPoint(val) {
+  if (val >= 11) return 5;
+  if (val >= 7) return 4;
+  if (val >= 4) return 3;
+  if (val >= 2) return 2;
+  if (val >= 1) return 1;
+  return 0;
+}
+
+function getActivityPoint(val) {
+  if (val >= 4) return 5;
+  if (val === 3) return 4;
+  if (val === 2) return 3;
+  if (val === 1) return 2;
+  return 1;
+}
+
+function getTicketPoint(val) {
+  if (val >= 15) return 5;
+  if (val >= 10) return 4;
+  if (val >= 7) return 3;
+  if (val >= 5) return 2;
+  if (val >= 3) return 1;
+  return 0;
+}
+
+let isPO1 = false;
+
+function toggleMode() {
+  const toggle = document.getElementById("modeToggle");
+  const divisionCard = document.getElementById("divisionCard");
+  const label = document.getElementById("modeLabel");
+
+  isPO1 = toggle.checked;
+
+  if (isPO1) {
+    divisionCard.style.display = "none";
+    label.innerText = "Current OPA for PO-1";
+  } else {
+    divisionCard.style.display = "block";
+    label.innerText = "Current OPA for PO-2 / PO-3";
+  }
+}
+
+function calculate() {
+  let dutyInputs = Array.from(document.querySelectorAll('.duty')).filter(i => i.value !== "");
+  let farInputs = Array.from(document.querySelectorAll('.far')).filter(i => i.value !== "");
+
+  let dutyPoints = dutyInputs.map(i => getDutyPoint(Number(i.value)));
+  let dutyAvg = dutyPoints.length ? dutyPoints.reduce((a,b)=>a+b,0) / dutyPoints.length : 0;
+
+  let farPoints = farInputs.map(i => Number(i.value));
+  let farAvg = farPoints.length ? farPoints.reduce((a,b)=>a+b,0) / farPoints.length : 0;
+
+  let incidentVal = Number(document.getElementById("incident").value || 0);
+  let activityVal = Number(document.getElementById("activity").value || 0);
+  let division = Number(document.getElementById("division").value || 0);
+  let ticketVal = Number(document.getElementById("ticket").value || 0);
+
+  let incident = incidentVal ? getIncidentPoint(incidentVal) : 0;
+  let activityInput = document.getElementById("activity").value;
+  let activity = activityInput === "" 
+      ? 0 
+      : getActivityPoint(Number(activityInput));
+  let ticket = ticketVal ? getTicketPoint(ticketVal) : 0;
+
+    let total, avg;
+    
+    if (isPO1) {
+      total = dutyAvg + farAvg + incident + activity + ticket;
+      avg = total / 5;
+    } else {
+      total = dutyAvg + farAvg + incident + activity + division + ticket;
+      avg = total / 6;
+    }
+
+  let grade = "";
+  if (avg >= 4.5) grade = "Extraordinary";
+  else if (avg >= 3.6) grade = "Exceed Standards";
+  else if (avg >= 2.6) grade = "Meets Standards";
+  else if (avg >= 2.0) grade = "Below Standards";
+  else grade = "Incapable";
+
+    document.getElementById("result").innerHTML = `
+      <h3>Duty Hours: ${dutyAvg.toFixed(2)}</h3>
+      <h3>Field Activity Report: ${farAvg.toFixed(2)}</h3>
+      <h3>Incident Report: ${incident}</h3>
+      <h3>Officer Activity: ${activity}</h3>
+      ${!isPO1 ? `<h3>Division Activity: ${division}</h3>` : ``}
+      <h3>Ticket Record: ${ticket}</h3>
+    
+      <hr style="margin:10px 0; border-color: rgba(56,189,248,0.3);">
+    
+      <h3><b>Total Point:</b> ${total.toFixed(2)}</h3>
+      <h2>Final Score: ${avg.toFixed(2)}</h2>
+      <h2>${grade}</h2>
+    `;
+}
+</script>
+</body>
+</html>
