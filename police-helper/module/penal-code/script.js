@@ -200,7 +200,7 @@ function formatDirectToOfficialPenalCode(displayNumber)
     {
         displayNumber = '(1) F';
     }
-    return `<a href="https://police.san-andreas.net/viewtopic.php?t=148639#:~:text=${displayNumber.replace(' ','%20')}"><button class="copy-search-button-1">🔗</button></a>`;
+    return `<a href="https://police.san-andreas.net/viewtopic.php?t=148639#:~:text=${displayNumber.replace(' ','%20')}" target="_blank"><button class="copy-search-button-1">🔗</button></a>`;
 }
 
 function searchImpoundManual()
