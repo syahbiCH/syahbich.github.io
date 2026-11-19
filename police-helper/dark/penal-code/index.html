@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Helper - Penal Code</title>
+    <link rel="icon" href="../../module/image/website-icon.png">
+    <link rel="stylesheet" href="../../module/penal-code/style.css">
+    <style id="theme-color-override">
+        :root {
+            --black-color-1: #1c1c1c;
+            --text-color-white-1: #d9d9d9;
+            --background-color-1: #1d2428;
+            --thead-color-1: #2c2c2c;
+            --td-color-1: #232323;
+            --output-display-1: #2e2e2e;
+        }
+    </style>
+</head>
+<body>
+    <div id="module-root"></div>
+    <script>
+        (async function loadModule() {
+            const moduleRoot = document.getElementById('module-root');
+            const moduleHtmlPath = '../../module/penal-code/index.html';
+            const moduleJsPath = '../../module/penal-code/script.js';
+
+            try {
+                const res = await fetch(moduleHtmlPath);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                moduleRoot.innerHTML = await res.text();
+
+                const scriptEl = document.createElement('script');
+                scriptEl.src = moduleJsPath;
+                scriptEl.onload = () => {
+                    if (typeof initPenalCodeTool === 'function') {
+                        initPenalCodeTool();
+                    }
+                };
+                document.body.appendChild(scriptEl);
+            } catch (err) {
+                moduleRoot.innerHTML = `<p style="color: #fff; padding: 20px;">Gagal memuat modul: ${err.message}</p>`;
+            }
+        })();
+    </script>
+</body>
+</html>
