@@ -29,7 +29,7 @@ const materialsData = [
         category: "Charge",
         summary: "Dapat digunakan untuk memilih pasal, menghasilkan command /arrest, /ticket, /markimpound, dan hal lainnya.",
         toolUrl: "https://syahbich.github.io/police-helper/dark/penal-code/",
-        guideUrl: "https://youtube.com/"
+        guideUrl: "https://youtu.be/9PJ6pYMzsg0"
     },
     {
         id: "bbcode-generator-1",
